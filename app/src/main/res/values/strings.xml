@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">cst338_project02_group3</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="site_name">Placeholder</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
