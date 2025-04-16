@@ -3,4 +3,8 @@
     <string name="find_matches">Find matches</string>
     <string name="my_matches">My matches</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="welcome_admin">Welcome, Admin!</string>
+    <string name="add_users">Add Users</string>
+    <string name="delete_users">Delete Users</string>
+    <string name="user_reports">User Reports</string>
 </resources>
