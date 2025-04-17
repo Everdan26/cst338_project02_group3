@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cst338_project02_group3</string>
+    <string name="app_name">Find Your Otter Half!</string>
     <string name="welcome">WELCOME!</string>
     <string name="find_matches">Find Matches</string>
     <string name="view_matches">View Matches</string>
