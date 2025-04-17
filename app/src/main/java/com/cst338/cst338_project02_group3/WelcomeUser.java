@@ -16,13 +16,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.cst338.cst338_project02_group3.database.entities.User;
+
 public class WelcomeUser extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.cst338.cst338_project02_group3.MAIN_ACTIVITY_USER_ID";
     private static final int LOGGED_OUT = -1;
     static final String SHARED_PREFERENCE_USERID_KEY = "com.cst338.cst338_project02_group3.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE = "com.cst338.cst338_project02_group3.SHARED_PREFERENCE_USERID_VALUE";
     private static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.cst338.cst338_project02_group3.SAVED_INSTANCE_STATE_USERID_KEY";
-
+    private int loggedInUserId = -1;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +64,7 @@ public class WelcomeUser extends AppCompatActivity {
     }
 
     private void showLogoutDialog(){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(WelcomeAdmin.this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(WelcomeUser.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
         alertBuilder.setMessage("Logout?");
