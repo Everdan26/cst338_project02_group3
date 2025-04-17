@@ -12,7 +12,6 @@ public class Matches {
     @PrimaryKey(autoGenerate = true) // Unique signifier for each match
     private int matchId;
 
-    //TODO: These two user IDs should be foreign keys.
     private int userId1;
     private int userId2;
 
