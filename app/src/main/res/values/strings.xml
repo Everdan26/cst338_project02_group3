@@ -3,5 +3,18 @@
     <string name="welcome">WELCOME!</string>
     <string name="find_matches">Find Matches</string>
     <string name="view_matches">View Matches</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="site_name">Placeholder</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Sign up</string>
+    <string name="enter_a_password">Enter a password</string>
+    <string name="enter_a_username">Enter a username</string>
+    <string name="my_matches">My matches</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="welcome_admin">Welcome, Admin!</string>
+    <string name="add_users">Add Users</string>
+    <string name="delete_users">Delete Users</string>
+    <string name="user_reports">User Reports</string>
 </resources>
