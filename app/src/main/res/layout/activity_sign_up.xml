@@ -24,8 +24,10 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
+        android:autofillHints="Username"
         android:gravity="center"
         android:hint="@string/enter_a_username"
+        android:inputType="text|number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUpHeaderTextView" />
@@ -35,12 +37,13 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
+        android:autofillHints="Password"
         android:gravity="center"
         android:hint="@string/enter_a_password"
         android:inputType="textPassword|numberPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signUpUsernameEditTextView"/>
+        app:layout_constraintTop_toBottomOf="@id/signUpUsernameEditTextView" />
 
     <Button
         android:id="@+id/signUpButton"
