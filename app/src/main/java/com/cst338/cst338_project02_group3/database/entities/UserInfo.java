@@ -1,34 +1,49 @@
 package com.cst338.cst338_project02_group3.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import com.cst338.cst338_project02_group3.database.DatingAppDatabase;
 
+import java.util.Objects;
+
 @Entity(tableName = DatingAppDatabase.USERINFO_TABLE)
 public class UserInfo {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
-//    TODO: comment this back in when User/UserDAO are merged...
-//    @ForeignKey()
-//    private int userId;
+    private int userId;
 
     private int age;
     private String gender;
-    private String location;
     private String interest;
     private String bio;
     private String photo;
 
-    public UserInfo(int age, String gender, String location, String interest, String bio, String photo) {
+    public UserInfo(int userId, int age, String gender, String interest, String bio, String photo) {
+        this.userId = userId;
         this.age = age;
         this.gender = gender;
-        this.location = location;
         this.interest = interest;
         this.bio = bio;
         this.photo = photo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getAge() {
@@ -47,13 +62,6 @@ public class UserInfo {
         this.gender = gender;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public String getInterest() {
         return interest;
@@ -79,5 +87,15 @@ public class UserInfo {
         this.photo = photo;
     }
 
-    //TODO: add equals() and hashCode() when we can implement user keys
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        UserInfo userInfo = (UserInfo) o;
+        return id == userInfo.id && userId == userInfo.userId && age == userInfo.age && Objects.equals(gender, userInfo.gender)  && Objects.equals(interest, userInfo.interest) && Objects.equals(bio, userInfo.bio) && Objects.equals(photo, userInfo.photo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, age, gender, interest, bio, photo);
+    }
 }
