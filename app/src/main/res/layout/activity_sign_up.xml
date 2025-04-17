@@ -43,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/signUpUsernameEditTextView"/>
 
     <Button
+        android:id="@+id/signUpButton"
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginTop="15dp"
@@ -50,7 +51,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordEditTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordEditTextView"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
