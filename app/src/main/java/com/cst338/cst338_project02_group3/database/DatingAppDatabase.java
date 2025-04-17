@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {UserDAO.class, UserInfoDAO.class}, version = 2, exportSchema = false)
+@Database(entities = {UserDAO.class, UserInfoDAO.class, MatchesDAO.class}, version = 3, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
 
