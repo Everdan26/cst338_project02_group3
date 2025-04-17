@@ -16,11 +16,13 @@ public class User {
     private String username;
     private String password;
     private boolean isAdmin;
+    private boolean isBanned;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         isAdmin = false;
+        isBanned = false;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, isAdmin);
+        return Objects.hash(id, username, password, isAdmin, isBanned);
     }
 
     public int getId() {
@@ -65,5 +67,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(boolean banned) {
+        isBanned = banned;
     }
 }

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cst338.cst338_project02_group3.database.UserInfoDAO;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -14,6 +16,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public static Intent loginIntentFactory(Context context) {
         return new Intent(context, LoginActivity.class);
+    }
+
+    private void attemptLogin(String username, String password) {
+        //create getUserByUsername method
+        UserInfo user = UserInfoDAO.getUserByUsername(username);
+
     }
 
     @Override
