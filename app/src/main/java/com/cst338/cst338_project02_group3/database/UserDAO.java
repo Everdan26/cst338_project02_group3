@@ -25,7 +25,7 @@ public interface UserDAO {
     void delete(User user);
 
     //Just gets all the record of Users in a List
-    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE)
+    @Query("SELECT * FROM userTable " + DatingAppDatabase.USER_TABLE)
     List<User> getAllRecords();
 
 
