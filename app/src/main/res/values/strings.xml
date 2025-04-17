@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">cst338_project02_group3</string>
+ caba_LayOut_SignUp
+    <string name="sign_up">Sign up</string>
+    <string name="enter_a_password">Enter a password</string>
+    <string name="enter_a_username">Enter a username</string>
+
     <string name="find_matches">Find matches</string>
     <string name="my_matches">My matches</string>
     <string name="edit_profile">Edit profile</string>
@@ -7,4 +12,5 @@
     <string name="add_users">Add Users</string>
     <string name="delete_users">Delete Users</string>
     <string name="user_reports">User Reports</string>
+ master
 </resources>
