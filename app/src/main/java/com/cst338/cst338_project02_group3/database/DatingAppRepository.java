@@ -3,6 +3,10 @@ package com.cst338.cst338_project02_group3.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
+import com.cst338.cst338_project02_group3.database.entities.User;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -44,5 +48,9 @@ public class DatingAppRepository {
             Log.d("CST338_DATINGAPP", "Error getting DatingAppRepository.");
         }
         return null;
+    }
+
+    public LiveData<User> getUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
     }
 }

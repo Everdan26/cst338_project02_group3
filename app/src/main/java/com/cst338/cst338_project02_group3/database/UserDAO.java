@@ -1,6 +1,7 @@
 package com.cst338.cst338_project02_group3.database;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -30,5 +31,6 @@ public interface UserDAO {
     void deleteAll();
 
 
-
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE id == :userId")
+    LiveData<User> getUserByUserId(int userId);
 }
