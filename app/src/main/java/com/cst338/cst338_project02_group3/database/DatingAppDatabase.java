@@ -49,7 +49,15 @@ public abstract class DatingAppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
-                //TODO: add two test users here, one admin, one regular user for testing purposes.
+                UserDAO dao = INSTANCE.userDAO();
+                dao.deleteAll();
+
+                User admin2 = new User("admin2", "admin2");
+                admin2.setAdmin(true);
+                dao.insert(admin2);
+
+                User testUser1 = new User("testuser1", "testuser1");
+                dao.insert(testUser1);
             });
 
         }

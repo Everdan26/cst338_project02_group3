@@ -27,6 +27,9 @@ public interface UserDAO {
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE)
     List<User> getAllRecords();
 
+    @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE)
+    void deleteAll();
+
 
 
 }
