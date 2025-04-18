@@ -30,6 +30,10 @@ public class UserInfo {
         this.photo = photo;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
