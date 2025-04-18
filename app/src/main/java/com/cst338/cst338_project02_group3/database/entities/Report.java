@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity(tableName = DatingAppDatabase.REPORT_TABLE)
 public class Report {
-    //TODO: Might have to double check all these things
+    //TODO: Might have to double check all these things 
     @PrimaryKey(autoGenerate = true)
     private int reportId;
     private int userId;

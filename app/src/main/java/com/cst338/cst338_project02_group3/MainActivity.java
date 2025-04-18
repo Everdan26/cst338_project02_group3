@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.cst338.cst338_project02_group3.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    private int loggedInUserId = -1;
 
     private ActivityMainBinding binding;
 
@@ -23,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+//        if(loggedInUserId == -1) {
+//            Intent intent = SignUpActivity.signUpActivityIntentFactory(getApplicationContext());
+//            startActivity(intent);
+//        }
 
         binding.mainLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,9 +36,15 @@ public class MainActivity extends AppCompatActivity {
         binding.mainSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Implement this.
+                Intent intent = SignUpActivity.signUpActivityIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
+    }
+
+    static Intent mainActivityIntentFactory(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 }
