@@ -11,7 +11,7 @@ import java.util.Objects;
 public class UserPreferences {
 
     @PrimaryKey(autoGenerate = true)
-    private int preferencesId;
+    private int userPreferencesId;
 
     private int userInfoId;
     private int age;
@@ -25,12 +25,12 @@ public class UserPreferences {
         this.interest = interest;
     }
 
-    public void setPreferencesId(int preferencesId) {
-        this.preferencesId = preferencesId;
+    public void setUserPreferencesId(int userPreferencesId) {
+        this.userPreferencesId = userPreferencesId;
     }
 
-    public int getPreferencesId() {
-        return preferencesId;
+    public int getUserPreferencesId() {
+        return userPreferencesId;
     }
 
     public int getUserInfoId() {
@@ -69,11 +69,11 @@ public class UserPreferences {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserPreferences that = (UserPreferences) o;
-        return preferencesId == that.preferencesId && userInfoId == that.userInfoId && age == that.age && Objects.equals(gender, that.gender) && Objects.equals(interest, that.interest);
+        return userPreferencesId == that.userPreferencesId && userInfoId == that.userInfoId && age == that.age && Objects.equals(gender, that.gender) && Objects.equals(interest, that.interest);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(preferencesId, userInfoId, age, gender, interest);
+        return Objects.hash(userPreferencesId, userInfoId, age, gender, interest);
     }
 }
