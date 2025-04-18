@@ -1,7 +1,6 @@
 package com.cst338.cst338_project02_group3.database;
 //Declare DAO first then to do the entity afterwards
 
-import static androidx.room.OnConflictStrategy.*;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
