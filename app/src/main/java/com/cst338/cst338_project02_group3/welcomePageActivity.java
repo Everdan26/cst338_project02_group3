@@ -17,7 +17,10 @@ public class welcomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityWelcomePageBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        // Use intent factory to open up other pages???
 
         binding.welcomePageFindMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,5 +42,7 @@ public class welcomePageActivity extends AppCompatActivity {
                 // TODO: Open Edit Profile Page
             }
         });
+
+
     }
 }
