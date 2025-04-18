@@ -2,17 +2,23 @@ package com.cst338.cst338_project02_group3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
+import com.cst338.cst338_project02_group3.database.DatingAppRepository;
+import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int LOGGED_OUT = -1;
     private int loggedInUserId = -1;
-
     private ActivityMainBinding binding;
+    private DatingAppRepository repository;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void loginUser(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key),LOGGED_OUT);
+
+
+        if(loggedInUserId == LOGGED_OUT && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
+            loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
+        }
+
+        if(loggedInUserId == LOGGED_OUT) {
+            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID,LOGGED_OUT);
+        }
+
+        if(loggedInUserId == LOGGED_OUT) {
+            return;
+        }
+
+        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
+        userObserver.observe(this, user -> {
+            this.user = user;
+            if(this.user != null ) {
+                invalidateOptionsMenu();
+            }
+        });
+
+    }
+
 
     static Intent mainActivityIntentFactory(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
