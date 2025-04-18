@@ -1,6 +1,7 @@
 package com.cst338.cst338_project02_group3.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -8,6 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.cst338.cst338_project02_group3.MainActivity;
 import com.cst338.cst338_project02_group3.database.entities.Matches;
 import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
@@ -50,7 +52,9 @@ public abstract class DatingAppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
+            Log.i(MainActivity.TAG, "DATABASE CREATED!");
             databaseWriteExecutor.execute(() -> {
+
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
 
