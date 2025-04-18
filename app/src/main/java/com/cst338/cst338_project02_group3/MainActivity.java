@@ -49,33 +49,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key),LOGGED_OUT);
-
-
-        if(loggedInUserId == LOGGED_OUT && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
-            loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
-        }
-
-        if(loggedInUserId == LOGGED_OUT) {
-            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID,LOGGED_OUT);
-        }
-
-        if(loggedInUserId == LOGGED_OUT) {
-            return;
-        }
-
-        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
-        userObserver.observe(this, user -> {
-            this.user = user;
-            if(this.user != null ) {
-                invalidateOptionsMenu();
-            }
-        });
-
-    }
+//    private void loginUser(Bundle savedInstanceState) {
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//
+//        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key),LOGGED_OUT);
+//
+//
+//        if(loggedInUserId == LOGGED_OUT && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
+//            loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
+//        }
+//
+//        if(loggedInUserId == LOGGED_OUT) {
+//            loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID,LOGGED_OUT);
+//        }
+//
+//        if(loggedInUserId == LOGGED_OUT) {
+//            return;
+//        }
+//
+//        LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
+//        userObserver.observe(this, user -> {
+//            this.user = user;
+//            if(this.user != null ) {
+//                invalidateOptionsMenu();
+//            }
+//        });
+//
+//    }
 
 
     static Intent mainActivityIntentFactory(Context context) {
