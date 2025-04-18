@@ -1,5 +1,7 @@
 package com.cst338.cst338_project02_group3;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -33,9 +35,14 @@ public class LoginActivity extends AppCompatActivity {
         binding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Add function(s) that handle signup
+                Intent intent = SignUpActivity.signUpActivityIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
+    }
+
+    static Intent loginActivityIntentFactory(Context context) {
+        return new Intent(context, LoginActivity.class);
     }
 }

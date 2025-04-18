@@ -34,10 +34,12 @@ public abstract class DatingAppDatabase extends RoomDatabase {
     static DatingAppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (DatingAppDatabase.class) {
-                INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatingAppDatabase.class, DATABASE_NAME)
-                        .fallbackToDestructiveMigration()
-                        .addCallback(addDefaultValues)
-                        .build();
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatingAppDatabase.class, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
+                            .addCallback(addDefaultValues)
+                            .build();
+                }
             }
         }
 
