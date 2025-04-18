@@ -1,6 +1,7 @@
 package com.cst338.cst338_project02_group3;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -25,14 +26,16 @@ public class welcomePageActivity extends AppCompatActivity {
         binding.welcomePageFindMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Open Find Matches Page
+                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
         binding.welcomePageViewMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Open View Matches Page
+                Intent intent = ViewMatchesActivity.viewMatchesIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -42,7 +45,6 @@ public class welcomePageActivity extends AppCompatActivity {
                 // TODO: Open Edit Profile Page
             }
         });
-
 
     }
 }
