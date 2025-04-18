@@ -14,12 +14,13 @@ import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
     private static final String MAIN_ACTIVITY_USER_ID = "com.cst338.project02_group3.MAIN_ACTIVITY_USER_ID";
     static final String SHARED_PREFERENCE_USERID_KEY = "com.cst338.project02_group3.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE = "com.cst338.project02_group3.SHARED_PREFERENCE_USERID_VALUE";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.cst338.project02_group3.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT = -1;
-    private int loggedInUserId = 1;
+    private int loggedInUserId = -1;
     private ActivityMainBinding binding;
     private DatingAppRepository repository;
     private User user;
@@ -34,15 +35,24 @@ public class MainActivity extends AppCompatActivity {
         repository = DatingAppRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-//        if(loggedInUserId == -1) {
-//            Intent intent = SignUpActivity.signUpActivityIntentFactory(getApplicationContext());
-//            startActivity(intent);
-//        }
+        if (loggedInUserId != LOGGED_OUT) {
+            Intent intent;
+
+            if(user.isAdmin()) {
+                intent = WelcomeAdmin.welcomeAdminIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
+            }
+            intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
+            startActivity(intent);
+        }
+
+        updateSharedPreference();
 
         binding.mainLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Implement this.
+                Intent intent = LoginActivity.loginActivityIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -57,11 +67,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(Bundle savedInstanceState) {
-        SharedPreferences sharedPreferences = getApplication().getSharedPreferences(SHARED_PREFERENCE_USERID_KEY,
-                Context.MODE_PRIVATE);
-        if (sharedPreferences.contains(SHARED_PREFERENCE_USERID_VALUE)) {
-            loggedInUserId = sharedPreferences.getInt(SHARED_PREFERENCE_USERID_VALUE, LOGGED_OUT);
-        }
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_userId_key), Context.MODE_PRIVATE);
+
+        loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+
         if (loggedInUserId == LOGGED_OUT & savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
             loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
         }
@@ -78,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
                 invalidateOptionsMenu();
             }
         });
+    }
+
+    private void updateSharedPreference() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
+        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
+        sharedPrefEditor.apply();
     }
 
 

@@ -1,8 +1,6 @@
 package com.cst338.cst338_project02_group3.database.entities;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import com.cst338.cst338_project02_group3.database.DatingAppDatabase;
@@ -12,7 +10,7 @@ import java.util.Objects;
 @Entity(tableName = DatingAppDatabase.USERINFO_TABLE)
 public class UserInfo {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int userInfoId;
     private int userId;
 
     private int age;
@@ -30,12 +28,12 @@ public class UserInfo {
         this.photo = photo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserInfoId(int userInfoId) {
+        this.userInfoId = userInfoId;
     }
 
-    public int getId() {
-        return id;
+    public int getUserInfoId() {
+        return userInfoId;
     }
 
     public int getUserId() {
@@ -91,11 +89,11 @@ public class UserInfo {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserInfo userInfo = (UserInfo) o;
-        return id == userInfo.id && userId == userInfo.userId && age == userInfo.age && Objects.equals(gender, userInfo.gender)  && Objects.equals(interest, userInfo.interest) && Objects.equals(bio, userInfo.bio) && Objects.equals(photo, userInfo.photo);
+        return userInfoId == userInfo.userInfoId && userId == userInfo.userId && age == userInfo.age && Objects.equals(gender, userInfo.gender)  && Objects.equals(interest, userInfo.interest) && Objects.equals(bio, userInfo.bio) && Objects.equals(photo, userInfo.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, age, gender, interest, bio, photo);
+        return Objects.hash(userInfoId, userId, age, gender, interest, bio, photo);
     }
 }

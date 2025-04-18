@@ -33,4 +33,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
+    LiveData<User> getUserByUserName(String username);
 }
