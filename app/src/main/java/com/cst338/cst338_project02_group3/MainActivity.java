@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
         if (loggedInUserId != LOGGED_OUT) {
             Intent intent;
 
-            if(user.isAdmin()) {
-                intent = WelcomeAdmin.welcomeAdminIntentFactory(getApplicationContext(), loggedInUserId);
-                startActivity(intent);
-            }
             intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
             startActivity(intent);
         }
