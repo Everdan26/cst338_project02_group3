@@ -21,4 +21,5 @@
     <string name="preference_userId_key">cst338PreferenceUserIdKeyDatingApp</string>
     <string name="logout">Logout</string>
     <string name="welcome_user">Welcome %1$s!</string>
+    <string name="admin">Admin</string>
 </resources>

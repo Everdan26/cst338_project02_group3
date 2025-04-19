@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -50,16 +51,36 @@ public class WelcomeUser extends AppCompatActivity {
                      //Uses %1$s... %1 == first parameter and $s == what input the parameter will take which is String
                      String welcomeMsg = getString(R.string.welcome_user,this.user.getUsername());
                      binding.titleWelcomeTextView.setText(welcomeMsg);
+
+                    //Makes the admin show up if the user is an admin, else it will be hidden
+                    if(this.user.isAdmin()) {
+                        binding.adminButtonUser.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.adminButtonUser.setVisibility(View.INVISIBLE);
+                    }
                 }
             });
         }
 
+        //Logout Button
         binding.logOutButtonUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showLogoutDialog();
             }
         });
+
+        //Admin Button
+        binding.adminButtonUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(user.isAdmin()) {
+                    Intent intent = WelcomeAdmin.welcomeAdminIntentFactory(getApplicationContext(),loggedInUserId);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 
     static Intent welcomeUserIntentFactory(Context context, int userId) {
