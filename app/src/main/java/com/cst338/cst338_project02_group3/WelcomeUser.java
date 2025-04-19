@@ -27,8 +27,8 @@ public class WelcomeUser extends AppCompatActivity {
 
     private DatingAppRepository repository;
     private int loggedInUserId;
-
     private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,13 @@ public class WelcomeUser extends AppCompatActivity {
             LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
             userObserver.observe(this, user -> {
                 this.user = user;
+                //Checks if user is not null
+                if(this.user != null) {
+                     //Changes the string text for the string resource welcome_user
+                     //Uses %1$s... %1 == first parameter and $s == what input the parameter will take which is String
+                     String welcomeMsg = getString(R.string.welcome_user,this.user.getUsername());
+                     binding.titleWelcomeTextView.setText(welcomeMsg);
+                }
             });
         }
 

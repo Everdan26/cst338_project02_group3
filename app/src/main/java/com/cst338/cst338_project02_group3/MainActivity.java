@@ -14,7 +14,7 @@ import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TAG = "DATING_APP";
     private static final String MAIN_ACTIVITY_USER_ID = "com.cst338.project02_group3.MAIN_ACTIVITY_USER_ID";
     static final String SHARED_PREFERENCE_USERID_KEY = "com.cst338.project02_group3.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE = "com.cst338.project02_group3.SHARED_PREFERENCE_USERID_VALUE";
