@@ -13,7 +13,7 @@
         android:layout_height="150dip"
         android:id="@+id/titleWelcomeTextView"
         android:textSize="42sp"
-        android:text="Welcome!"
+        android:text="@string/welcome_user"
         android:gravity="center"
         android:layout_margin="16dip"
         app:layout_constraintTop_toTopOf="parent"
