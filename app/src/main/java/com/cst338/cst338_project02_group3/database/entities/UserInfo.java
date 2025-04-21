@@ -15,15 +15,13 @@ public class UserInfo {
 
     private int age;
     private String gender;
-    private String interest;
     private String bio;
     private String photo;
 
-    public UserInfo(int userId, int age, String gender, String interest, String bio, String photo) {
+    public UserInfo(int userId, int age, String gender, String bio, String photo) {
         this.userId = userId;
         this.age = age;
         this.gender = gender;
-        this.interest = interest;
         this.bio = bio;
         this.photo = photo;
     }
@@ -61,14 +59,6 @@ public class UserInfo {
     }
 
 
-    public String getInterest() {
-        return interest;
-    }
-
-    public void setInterest(String interest) {
-        this.interest = interest;
-    }
-
     public String getBio() {
         return bio;
     }
@@ -89,11 +79,11 @@ public class UserInfo {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserInfo userInfo = (UserInfo) o;
-        return userInfoId == userInfo.userInfoId && userId == userInfo.userId && age == userInfo.age && Objects.equals(gender, userInfo.gender)  && Objects.equals(interest, userInfo.interest) && Objects.equals(bio, userInfo.bio) && Objects.equals(photo, userInfo.photo);
+        return userInfoId == userInfo.userInfoId && userId == userInfo.userId && age == userInfo.age && Objects.equals(gender, userInfo.gender) && Objects.equals(bio, userInfo.bio) && Objects.equals(photo, userInfo.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userInfoId, userId, age, gender, interest, bio, photo);
+        return Objects.hash(userInfoId, userId, age, gender, bio, photo);
     }
 }
