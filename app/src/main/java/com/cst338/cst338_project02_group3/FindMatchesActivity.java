@@ -19,8 +19,6 @@ public class FindMatchesActivity extends AppCompatActivity {
         binding = ActivityFindMatchesBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        setContentView(R.layout.activity_find_matches);
     }
 
     static Intent findMatchesIntentFactory(Context context) {

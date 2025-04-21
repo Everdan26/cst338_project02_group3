@@ -20,8 +20,6 @@ public class ViewMatchesActivity extends AppCompatActivity {
         binding = ActivityViewMatchesBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        setContentView(R.layout.activity_view_matches);
     }
 
     static Intent viewMatchesIntentFactory(Context context) {
