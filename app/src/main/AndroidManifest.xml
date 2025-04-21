@@ -13,7 +13,13 @@
         android:theme="@style/Theme.Cst338_project02_group3"
         tools:targetApi="31">
         <activity
-            android:name=".welcomePageActivity"
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindMatchesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMatchesActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
