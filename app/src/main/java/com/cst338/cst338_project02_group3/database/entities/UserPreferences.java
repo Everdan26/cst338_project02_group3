@@ -8,25 +8,29 @@ import com.cst338.cst338_project02_group3.database.DatingAppDatabase;
 import java.util.Objects;
 
 @Entity(tableName = DatingAppDatabase.PREFERENCES_TABLE)
-public class Preferences {
+public class UserPreferences {
 
     @PrimaryKey(autoGenerate = true)
-    private int preferencesId;
+    private int userPreferencesId;
 
     private int userInfoId;
     private int age;
     private String gender;
     private String interest;
 
-    public Preferences(int userInfoId, int age, String gender, String interest) {
+    public UserPreferences(int userInfoId, int age, String gender, String interest) {
         this.userInfoId = userInfoId;
         this.age = age;
         this.gender = gender;
         this.interest = interest;
     }
 
-    public int getPreferencesId() {
-        return preferencesId;
+    public void setUserPreferencesId(int userPreferencesId) {
+        this.userPreferencesId = userPreferencesId;
+    }
+
+    public int getUserPreferencesId() {
+        return userPreferencesId;
     }
 
     public int getUserInfoId() {
@@ -64,12 +68,12 @@ public class Preferences {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Preferences that = (Preferences) o;
-        return preferencesId == that.preferencesId && userInfoId == that.userInfoId && age == that.age && Objects.equals(gender, that.gender) && Objects.equals(interest, that.interest);
+        UserPreferences that = (UserPreferences) o;
+        return userPreferencesId == that.userPreferencesId && userInfoId == that.userInfoId && age == that.age && Objects.equals(gender, that.gender) && Objects.equals(interest, that.interest);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(preferencesId, userInfoId, age, gender, interest);
+        return Objects.hash(userPreferencesId, userInfoId, age, gender, interest);
     }
 }

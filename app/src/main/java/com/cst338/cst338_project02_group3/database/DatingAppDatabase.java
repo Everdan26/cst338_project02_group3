@@ -8,10 +8,16 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.cst338.cst338_project02_group3.database.entities.Matches;
+import com.cst338.cst338_project02_group3.database.entities.Report;
+import com.cst338.cst338_project02_group3.database.entities.User;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
+import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {UserDAO.class, UserInfoDAO.class, MatchesDAO.class, ReportDAO.class, PreferencesDAO.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 5, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
     public static final String USER_TABLE = "userTable";
@@ -28,10 +34,12 @@ public abstract class DatingAppDatabase extends RoomDatabase {
     static DatingAppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (DatingAppDatabase.class) {
-                INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatingAppDatabase.class, DATABASE_NAME)
-                        .fallbackToDestructiveMigration()
-                        .addCallback(addDefaultValues)
-                        .build();
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatingAppDatabase.class, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
+                            .addCallback(addDefaultValues)
+                            .build();
+                }
             }
         }
 
@@ -43,10 +51,27 @@ public abstract class DatingAppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
-                //TODO: add two test users here, one admin, one regular user for testing purposes.
+                UserDAO dao = INSTANCE.userDAO();
+                dao.deleteAll();
+
+                User admin2 = new User("admin2", "admin2");
+                admin2.setAdmin(true);
+                dao.insert(admin2);
+
+                User testUser1 = new User("testuser1", "testuser1");
+                dao.insert(testUser1);
             });
 
         }
     };
 
+    public abstract UserDAO userDAO();
+
+    public abstract UserInfoDAO userInfoDAO();
+
+    public abstract MatchesDAO matchesDAO();
+
+    public abstract ReportDAO reportDAO();
+
+    public abstract UserPreferencesDAO userPreferencesDAO();
 }
