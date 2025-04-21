@@ -24,4 +24,7 @@
     <string name="edit_your_gender">Edit your gender</string>
     <string name="edit_your_bio">Edit your bio</string>
     <string name="change_your_profile_picture">Change your profile picture</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_user">Welcome %1$s!</string>
+    <string name="admin">Admin</string>
 </resources>
