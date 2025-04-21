@@ -14,12 +14,12 @@ import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TAG = "DATING_APP";
     private static final String MAIN_ACTIVITY_USER_ID = "com.cst338.project02_group3.MAIN_ACTIVITY_USER_ID";
     static final String SHARED_PREFERENCE_USERID_KEY = "com.cst338.project02_group3.SHARED_PREFERENCE_USERID_KEY";
     static final String SHARED_PREFERENCE_USERID_VALUE = "com.cst338.project02_group3.SHARED_PREFERENCE_USERID_VALUE";
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.cst338.project02_group3.SAVED_INSTANCE_STATE_USERID_KEY";
-    private static final int LOGGED_OUT = -1;
+    static final int LOGGED_OUT = -1;
     private int loggedInUserId = -1;
     private ActivityMainBinding binding;
     private DatingAppRepository repository;
@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
         if (loggedInUserId != LOGGED_OUT) {
             Intent intent;
 
-            if(user.isAdmin()) {
-                intent = WelcomeAdmin.welcomeAdminIntentFactory(getApplicationContext(), loggedInUserId);
-                startActivity(intent);
-            }
             intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
             startActivity(intent);
         }
