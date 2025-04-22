@@ -81,6 +81,31 @@ public class WelcomeUser extends AppCompatActivity {
             }
         });
 
+        // Wiring up buttons to other pages (find matches, view matches, edit profile)
+        binding.findMatchesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        binding.myMatchesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ViewMatchesActivity.viewMatchesIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        binding.editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
     }
 
     static Intent welcomeUserIntentFactory(Context context, int userId) {
