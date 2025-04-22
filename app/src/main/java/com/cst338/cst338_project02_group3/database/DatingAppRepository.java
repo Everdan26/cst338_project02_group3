@@ -65,4 +65,8 @@ public class DatingAppRepository {
             userDAO.insert(user);
         });
     }
+
+    public LiveData<User> getUserByUsername(String username) {
+        return userDAO.getUserByUserName(username);
+    }
 }
