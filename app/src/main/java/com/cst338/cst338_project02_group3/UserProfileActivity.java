@@ -3,6 +3,7 @@ package com.cst338.cst338_project02_group3;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 
+import com.bumptech.glide.Glide;
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
 import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
@@ -49,11 +51,21 @@ public class UserProfileActivity extends AppCompatActivity {
                     String bio = getString(R.string.user_biography, userInfo.getBio());
                     binding.userProfileBioTextView.setText(bio);
 
-                    //TODO: get image from URL string
+//                    String url = userInfo.getPhoto();
+                    Glide.with(binding.userProfileImageView).load(userInfo.getPhoto()).into(binding.userProfileImageView);
                 }
             });
         }
+
+        binding.userProfileBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
+            }
+        });
     }
+
 
     static Intent userProfileIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, UserProfileActivity.class);

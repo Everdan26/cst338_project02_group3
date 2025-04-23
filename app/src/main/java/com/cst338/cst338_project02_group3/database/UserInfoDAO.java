@@ -17,6 +17,9 @@ public interface UserInfoDAO {
     @Delete
     void delete(UserInfo userInfo);
 
+    @Query("DELETE FROM " + DatingAppDatabase.USERINFO_TABLE)
+    void deleteAll();
+
     @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
 }

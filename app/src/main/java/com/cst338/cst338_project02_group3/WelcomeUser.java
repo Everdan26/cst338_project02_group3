@@ -101,7 +101,7 @@ public class WelcomeUser extends AppCompatActivity {
         binding.editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext());
+                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });
