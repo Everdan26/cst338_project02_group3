@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1B5D0"
+    tools:context=".MyMatchesActivity">
+
+    <TextView
+        android:id="@+id/myMatchesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="150dip"
+        android:layout_margin="16dip"
+        android:gravity="center"
+        android:text="@string/my_matches_textview"
+        android:textSize="42sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profileImg"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="104dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/myMatchesTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="196dp" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        app:layout_constraintTop_toBottomOf="@id/profileImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/name"
+        android:textColor="#000000"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="428dp" />
+
+    <TextView
+        android:id="@+id/textViewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/age"
+        android:textColor="#555555"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/textViewName"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="474dp" />
+
+    <TextView
+        android:id="@+id/textViewBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/bio"
+        android:textColor="#555555"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/textViewAge"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="522dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

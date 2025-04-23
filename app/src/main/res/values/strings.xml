@@ -17,4 +17,8 @@
     <string name="delete_users">Delete Users</string>
     <string name="user_reports">User Reports</string>
     <string name="find_your_otter_half">Find Your Otter Half!</string>
+    <string name="my_matches_textview">My Matches!</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="bio">Bio</string>
 </resources>
