@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.cst338.cst338_project02_group3.database.entities.User;
 
 import com.cst338.cst338_project02_group3.database.entities.User;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -68,5 +69,9 @@ public class DatingAppRepository {
 
     public LiveData<User> getUserByUsername(String username) {
         return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<UserInfo> getUserInfoByUserId(int userId) {
+        return userInfoDAO.getUserInfoByUserId(userId);
     }
 }

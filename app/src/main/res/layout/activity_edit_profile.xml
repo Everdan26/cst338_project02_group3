@@ -54,6 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/editGenderEditText" />
 
     <EditText
+        android:id="@+id/editProfilePictureText"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
@@ -62,6 +63,17 @@
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/EditBioEditText" />
+
+    <Button
+        android:id="@+id/editProfileViewProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/view_profile"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editProfilePictureText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
