@@ -1,5 +1,6 @@
 package com.cst338.cst338_project02_group3.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,12 +17,18 @@ public class Report {
     private String reason;
     private boolean isBan;
 
-    public Report(int reportId, int userId, String reason, boolean isBan) {
-        this.reportId = reportId;
+    public Report(int userId, String reason, boolean isBan) {
         this.userId = userId;
         this.reason = reason;
         this.isBan = isBan;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return  "Report Id: " + reportId + '\n' + "userId: " + userId + '\n' + "Reason = " + reason + '\n' + "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
+    }
+
 
     @Override
     public boolean equals(Object o) {

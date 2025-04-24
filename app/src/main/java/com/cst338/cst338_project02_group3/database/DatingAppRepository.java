@@ -5,10 +5,13 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import com.cst338.cst338_project02_group3.ReportLogs;
+import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
 
 import com.cst338.cst338_project02_group3.database.entities.User;
 
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -20,6 +23,7 @@ public class DatingAppRepository {
     private final UserPreferencesDAO userPreferencesDAO;
     private final MatchesDAO matchesDAO;
     private final ReportDAO reportDAO;
+    private ArrayList<Report> reportLogs;
 
     private static DatingAppRepository repository;
 
@@ -69,4 +73,23 @@ public class DatingAppRepository {
     public LiveData<User> getUserByUsername(String username) {
         return userDAO.getUserByUserName(username);
     }
+
+    public ArrayList<Report> reportedUsersLog() {
+        Future<ArrayList<Report>> future = DatingAppDatabase.databaseWriteExecutor.submit(
+                new Callable<ArrayList<Report>>() {
+                    @Override
+                    public ArrayList<Report> call() throws Exception {
+                        return (ArrayList<Report>) reportDAO.getAllRecords();
+                    }
+                }
+        );
+        //Will try to pull information out of our future object
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            Log.i(ReportLogs.TAG, "Problem when getting all Report Logs in the repository");
+        }
+        return null;
+    }
+
 }

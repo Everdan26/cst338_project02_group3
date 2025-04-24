@@ -22,4 +22,9 @@
     <string name="logout">Logout</string>
     <string name="welcome_user">Welcome %1$s!</string>
     <string name="admin">Admin</string>
+    <string name="reported_users">Reported Users</string>
+    <string name="users_reported">Users Reported:</string>
+    <string name="no_users_reported_at_the_moment">No Users reported at the moment</string>
+    <string name="update_log">Update Log</string>
+    <string name="main_menu">Main Menu</string>
 </resources>

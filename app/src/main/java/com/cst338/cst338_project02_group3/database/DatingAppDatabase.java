@@ -19,7 +19,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 6, exportSchema = false)
+@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 9, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
     public static final String USER_TABLE = "userTable";
@@ -64,6 +64,11 @@ public abstract class DatingAppDatabase extends RoomDatabase {
 
                 User testUser1 = new User("testuser1", "testuser1");
                 dao.insert(testUser1);
+
+
+                //Report User test
+                ReportDAO repDAO = INSTANCE.reportDAO();
+                repDAO.insert(new Report(testUser1.getId(),"Inappropriate Picture",testUser1.isBan()));
             });
 
         }
