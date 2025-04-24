@@ -27,4 +27,5 @@
     <string name="logout">Logout</string>
     <string name="welcome_user">Welcome %1$s!</string>
     <string name="admin">Admin</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

@@ -24,7 +24,7 @@
         android:id="@+id/editAgeEditText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:hint="@string/edit_your_age"
         android:importantForAutofill="no"
         android:inputType="number"
@@ -35,7 +35,7 @@
         android:id="@+id/editGenderEditText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:hint="@string/edit_your_gender"
         android:importantForAutofill="no"
         android:inputType="text"
@@ -43,10 +43,10 @@
         app:layout_constraintTop_toBottomOf="@id/editAgeEditText" />
 
     <EditText
-        android:id="@+id/EditBioEditText"
+        android:id="@+id/editBioEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:hint="@string/edit_your_bio"
         android:importantForAutofill="no"
         android:inputType="text"
@@ -54,14 +54,26 @@
         app:layout_constraintTop_toBottomOf="@id/editGenderEditText" />
 
     <EditText
+        android:id="@+id/editPfpEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
         android:hint="@string/change_your_profile_picture"
         android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/EditBioEditText" />
+
+    <Button
+        android:id="@+id/editProfileSaveChangesButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="@string/save_changes"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPfpEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
