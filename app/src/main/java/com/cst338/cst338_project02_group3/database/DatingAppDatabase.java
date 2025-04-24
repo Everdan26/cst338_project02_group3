@@ -66,12 +66,21 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 userDAO.insert(admin2);
 
                 User testUser1 = new User("testuser1", "testuser1");
+
+                dao.insert(testUser1);
+
+
+                //Report User test
+                ReportDAO repDAO = INSTANCE.reportDAO();
+                repDAO.insert(new Report(testUser1.getId(),"Inappropriate Picture",testUser1.isBan()));
+
                 userDAO.insert(testUser1);
 
                 UserInfo monte = new UserInfo(2, "Monte", 21, "M",
                         "Your favorite otter mascot.",
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
                 userInfoDAO.insert(monte);
+
 
             });
 

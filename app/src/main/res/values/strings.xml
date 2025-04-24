@@ -27,6 +27,13 @@
     <string name="logout">Logout</string>
     <string name="welcome_user">Welcome %1$s!</string>
     <string name="admin">Admin</string>
+
+    <string name="reported_users">Reported Users</string>
+    <string name="users_reported">Users Reported:</string>
+    <string name="no_users_reported_at_the_moment">No Users reported at the moment</string>
+    <string name="update_log">Update Log</string>
+    <string name="main_menu">Main Menu</string>
+
     <string name="user_s_image">User\'s image</string>
     <string name="name_age_gender">%1$s, %2$d, %3$s</string>
     <string name="bio">Bio</string>
@@ -34,4 +41,5 @@
     <string name="back">Back</string>
     <string name="bio_text">Bio Text</string>
     <string name="view_profile">View Profile</string>
+
 </resources>
