@@ -18,8 +18,6 @@
             android:name=".ReportLogs"
             android:exported="false" />
         <activity
-            android:name=".welcomePageActivity"
-
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
