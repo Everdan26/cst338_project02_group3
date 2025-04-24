@@ -10,6 +10,7 @@ import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
 
 import com.cst338.cst338_project02_group3.database.entities.User;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -74,6 +75,7 @@ public class DatingAppRepository {
         return userDAO.getUserByUserName(username);
     }
 
+
     public ArrayList<Report> reportedUsersLog() {
         Future<ArrayList<Report>> future = DatingAppDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<Report>>() {
@@ -90,6 +92,11 @@ public class DatingAppRepository {
             Log.i(ReportLogs.TAG, "Problem when getting all Report Logs in the repository");
         }
         return null;
+    }
+
+
+    public LiveData<UserInfo> getUserInfoByUserId(int userId) {
+        return userInfoDAO.getUserInfoByUserId(userId);
     }
 
 }
