@@ -41,5 +41,9 @@
     <string name="back">Back</string>
     <string name="bio_text">Bio Text</string>
     <string name="view_profile">View Profile</string>
+    <string name="my_matches_textview">My Matches</string>
+    <string name="name_mymatch">Name:</string>
+    <string name="age_mymatch">Age:</string>
+    <string name="bio_mymatch">Bio:</string>
 
 </resources>
