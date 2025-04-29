@@ -69,11 +69,6 @@ public class WelcomeAdmin extends AppCompatActivity {
 
     }
 
-    private void reportedUsers() {
-
-
-    }
-
     static Intent welcomeAdminIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, WelcomeAdmin.class);
         intent.putExtra(WELCOME_ADMIN_USER_ID, userId);

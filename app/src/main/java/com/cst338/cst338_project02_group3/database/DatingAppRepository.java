@@ -24,7 +24,7 @@ public class DatingAppRepository {
     private final UserPreferencesDAO userPreferencesDAO;
     private final MatchesDAO matchesDAO;
     private final ReportDAO reportDAO;
-    private ArrayList<Report> reportLogs;
+//    private ArrayList<Report> reportLogs;
 
     private static DatingAppRepository repository;
 
