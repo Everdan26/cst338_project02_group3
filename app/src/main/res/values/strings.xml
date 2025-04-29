@@ -10,7 +10,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="enter_a_password">Enter a password</string>
     <string name="enter_a_username">Enter a username</string>
-    <string name="my_matches">My matches</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="welcome_admin">Welcome, Admin!</string>
     <string name="add_users">Add Users</string>
@@ -41,5 +40,14 @@
     <string name="back">Back</string>
     <string name="bio_text">Bio Text</string>
     <string name="view_profile">View Profile</string>
+    <string name="my_matches_textview">My Matches</string>
+    <string name="name_mymatch">Name:</string>
+    <string name="age_mymatch">Age:</string>
+    <string name="bio_mymatch">Bio:</string>
+    <string name="my_matches">My Matches</string>
+    <string name="find_my_match_textview">Find My Match!</string>
+    <string name="preferred_age">Preferred Age</string>
+    <string name="preferred_gender">Preferred Gender</string>
+    <string name="find_matches_button">Find Matches!</string>
 
 </resources>
