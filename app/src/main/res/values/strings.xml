@@ -10,7 +10,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="enter_a_password">Enter a password</string>
     <string name="enter_a_username">Enter a username</string>
-    <string name="my_matches">My matches</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="welcome_admin">Welcome, Admin!</string>
     <string name="add_users">Add Users</string>
@@ -45,5 +44,6 @@
     <string name="name_mymatch">Name:</string>
     <string name="age_mymatch">Age:</string>
     <string name="bio_mymatch">Bio:</string>
+    <string name="my_matches">My Matches</string>
 
 </resources>
