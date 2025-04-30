@@ -18,6 +18,7 @@ import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
@@ -39,11 +40,14 @@ public class DatabaseTest {
     private UserPreferences userPreferences;
     private Matches matches;
 
+    //Dummy user to test matches. Shouldn't actually test it.
+    private User matchUser;
+
     private int userId;
     private int userInfoId;
 
     @Before
-    public void beforeTest() {
+    public void setup() {
         Context context = ApplicationProvider.getApplicationContext();
         db = Room.inMemoryDatabaseBuilder(context, DatingAppDatabase.class).build();
 
@@ -55,6 +59,7 @@ public class DatabaseTest {
 
 
         user = new User("testuser", "testuser");
+        matchUser = new User("matchtest", "matchtest");
 
         userId = user.getId();
 
@@ -64,7 +69,21 @@ public class DatabaseTest {
 
         report = new Report(userId, "Test Report", false);
         userPreferences = new UserPreferences(userInfoId, 21, "F");
+        matches = new Matches(userId, matchUser.getId());
+    }
 
+    @After
+    public void teardown() {
+        userId = 0;
+
+        user = null;
+        matchUser = null;
+        userInfo = null;
+        report = null;
+        userPreferences = null;
+        matches = null;
+
+        db.close();
     }
 
 
