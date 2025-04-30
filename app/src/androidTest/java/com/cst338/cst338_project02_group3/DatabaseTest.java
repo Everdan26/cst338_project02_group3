@@ -3,6 +3,7 @@ package com.cst338.cst338_project02_group3;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
@@ -113,5 +114,13 @@ public class DatabaseTest {
     public void getUserByIdTest() {
         userDAO.insert(user);
         assertNotNull(userDAO.getUserByUserIdTest(1));
+    }
+
+    @Test
+    public void deleteAllTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+        userDAO.deleteAll();
+        assertTrue(userDAO.getAllRecordsTest().isEmpty());
     }
 }
