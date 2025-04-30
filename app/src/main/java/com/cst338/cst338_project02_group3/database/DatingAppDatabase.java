@@ -83,7 +83,7 @@ public abstract class DatingAppDatabase extends RoomDatabase {
 
                 //Test for user matches
                     MatchesDAO matchesDAO = INSTANCE.matchesDAO();
-                    Matches match = new Matches(1, 2);
+                    Matches match = new Matches(1, 2, true);
                     matchesDAO.insert(match);
 
 

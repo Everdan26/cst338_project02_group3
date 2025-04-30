@@ -69,7 +69,7 @@ public class DatabaseTest {
 
         report = new Report(userId, "Test Report", false);
         userPreferences = new UserPreferences(userInfoId, 21, "F");
-        matches = new Matches(userId, matchUser.getId());
+        matches = new Matches(userId, matchUser.getId(), true);
     }
 
     @After
