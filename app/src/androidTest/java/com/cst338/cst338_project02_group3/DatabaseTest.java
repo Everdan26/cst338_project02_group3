@@ -100,12 +100,18 @@ public class DatabaseTest {
         assertNotNull(userDAO.getUserByUsernameTest("testuser"));
     }
 
-    @Test public void removeTest() {
+    @Test
+    public void removeTest() {
         userDAO.insert(user);
         assertNotNull(userDAO.getUserByUsernameTest("testuser"));
         userDAO.deleteUserByUsername("testuser");
         assertNull(userDAO.getUserByUsernameTest("testuser"));
     }
 
-
+    //Testing the SQL call, since LiveData unit testing is extremely difficult/impossible/beyond my pay grade
+    @Test
+    public void getUserByIdTest() {
+        userDAO.insert(user);
+        assertNotNull(userDAO.getUserByUserIdTest(1));
+    }
 }
