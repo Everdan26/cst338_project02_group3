@@ -52,7 +52,7 @@ public class ViewMatchesActivity extends AppCompatActivity {
 //            });
 //        }
 
-        //TODO: add back button on matches page
+        //back button
         binding.viewMatchesBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
