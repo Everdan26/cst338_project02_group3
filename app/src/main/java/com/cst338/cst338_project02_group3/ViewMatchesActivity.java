@@ -39,8 +39,6 @@ public class ViewMatchesActivity extends AppCompatActivity {
         loggedInUserId = getIntent().getIntExtra(MY_MATCHES_ACTIVITY_USER_ID,-1);
 
         if (loggedInUserId != -1) {
-            //TODO: get userId2 from match ifLike()
-            //we are going to use UserInfo instead of Matches to easily get the info
             LiveData<List<UserInfo>> usersWhoLikedMe = repository.getUsersWhoLikedMe(loggedInUserId);
             usersWhoLikedMe.observe(this, users -> {
                 if (users != null && !users.isEmpty()){
