@@ -1,5 +1,7 @@
 package com.cst338.cst338_project02_group3;
 
+import static java.lang.Integer.parseInt;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
-import com.cst338.cst338_project02_group3.database.entities.User;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.databinding.ActivityEditProfileBinding;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -22,7 +24,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private ActivityEditProfileBinding binding;
     private DatingAppRepository repository;
     private int loggedInUserId;
-    private User user;
+    private UserInfo userInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +35,17 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(view);
         repository = DatingAppRepository.getRepository(getApplication());
 
-        // Getting id of current user
+        // Getting id and userInfo of current user
         loggedInUserId = getIntent().getIntExtra(EDIT_PROFILE_ACTIVITY_USER_ID, -1);
         if (loggedInUserId != -1) {
-            LiveData<User> userObserver = repository.getUserByUserId(loggedInUserId);
-            userObserver.observe(this, user -> {
-                this.user = user;
+            LiveData<UserInfo> userObserver = repository.getUserInfoByUserId(loggedInUserId);
+            userObserver.observe(this, userInfo -> {
+                this.userInfo = userInfo;
             });
         }
+
+        // TODO: Display the user's current information
+        // TODO: ^^^ Add TextViews for above task to layout
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +65,9 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editProfile();
+                // Reloading page
+                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
         alertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -72,6 +81,23 @@ public class EditProfileActivity extends AppCompatActivity {
         String ageInput = binding.editAgeEditText.getText().toString();
         String genderInput = binding.editGenderEditText.getText().toString();
         String bioInput = binding.editBioEditText.getText().toString();
+        String pfpInput = binding.editPfpEditText.getText().toString();
+
+        // NOTE: I'm gonna try to edit the data using the setters in UserInfo.java
+        //       instead of using SQL queries. We'll see if this works...
+
+        if (!ageInput.isEmpty()) {
+            userInfo.setAge(parseInt(ageInput));
+        }
+        if (!genderInput.isEmpty()) { // This may change in the future...
+            userInfo.setGender(genderInput);
+        }
+        if (!bioInput.isEmpty()) {
+            userInfo.setBio(bioInput);
+        }
+        if (!pfpInput.isEmpty()) {
+            userInfo.setPhoto(pfpInput);
+        }
     }
 
     static Intent editProfileIntentFactory(Context context) {

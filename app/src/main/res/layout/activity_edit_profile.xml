@@ -62,7 +62,7 @@
         android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EditBioEditText" />
+        app:layout_constraintTop_toBottomOf="@id/editBioEditText" />
 
     <Button
         android:id="@+id/editProfileSaveChangesButton"
