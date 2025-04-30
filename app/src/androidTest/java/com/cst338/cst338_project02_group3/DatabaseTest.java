@@ -96,13 +96,13 @@ public class DatabaseTest {
     }
 
     @Test
-    public void insertTest() {
+    public void insertUserTest() {
         userDAO.insert(user);
         assertNotNull(userDAO.getUserByUsernameTest("testuser"));
     }
 
     @Test
-    public void removeTest() {
+    public void removeUserTest() {
         userDAO.insert(user);
         assertNotNull(userDAO.getUserByUsernameTest("testuser"));
         userDAO.deleteUserByUsername("testuser");
@@ -117,7 +117,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void deleteAllTest() {
+    public void deleteAllUsersTest() {
         userDAO.insert(user);
         userDAO.insert(matchUser);
         userDAO.deleteAll();
