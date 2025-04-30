@@ -79,7 +79,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 editProfile();
                 // Reloading page
-                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext());
+                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });
