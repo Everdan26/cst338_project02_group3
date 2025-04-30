@@ -99,7 +99,8 @@ public class DatingAppRepository {
     }
 
 //get user who liked me
-    public LiveData<List<Matches>> getUsersWhoLikedMe(int userId) {
-        return matchesDAO.getUsersWhoLikedMe(userId);
+    public LiveData<List<UserInfo>> getUsersWhoLikedMe(int userId) {
+        return userInfoDAO.getUsersWhoLikedUser(userId);
     }
+
 }

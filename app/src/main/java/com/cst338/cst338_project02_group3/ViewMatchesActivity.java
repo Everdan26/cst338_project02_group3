@@ -38,23 +38,21 @@ public class ViewMatchesActivity extends AppCompatActivity {
         repository = DatingAppRepository.getRepository(getApplication());
         loggedInUserId = getIntent().getIntExtra(MY_MATCHES_ACTIVITY_USER_ID,-1);
 
-//        if (loggedInUserId != -1) {
-//            LiveData<UserInfo> userInfoObserver = repository.getUsersWhoLikedMe(userId);
-//            //Get User's info and replace text with relevant info from bio
-//            userInfoObserver.observe(this, userInfo -> {
-//                this.userInfo = userInfo;
-//
-//                if (this.userInfo != null) {
-//                    binding.textViewName.setText(userInfo.getName());
-//                    binding.textViewAge.setText("Age: " + userInfo.getAge());
-//                    binding.textViewBio.setText("Bio: " + userInfo.getBio());
+        if (loggedInUserId != -1) {
+            LiveData<List<UserInfo>> usersWhoLikedMe = repository.getUsersWhoLikedMe(loggedInUserId);
+            usersWhoLikedMe.observe(this, users -> {
+                if (users != null && !users.isEmpty()){
+                    UserInfo userInfo = users.get(0);
+                    binding.textViewName.setText(userInfo.getName());
+                    binding.textViewAge.setText("Age: " + userInfo.getAge());
+                    binding.textViewBio.setText("Bio: " + userInfo.getBio());
 
-//                    Glide.with(binding.profileImg.getContext())
-//                            .load(userInfo.getPhoto())
-//                            .into(binding.profileImg);
-//                }
-//            });
-//        }
+                    Glide.with(binding.profileImg.getContext())
+                            .load(userInfo.getPhoto())
+                            .into(binding.profileImg);
+                }
+            });
+        }
 
         //back button
         binding.viewMatchesBackButton.setOnClickListener(new View.OnClickListener() {
