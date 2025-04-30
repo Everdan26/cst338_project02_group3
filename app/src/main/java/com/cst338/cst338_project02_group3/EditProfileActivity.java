@@ -36,6 +36,15 @@ public class EditProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //back button
+        binding.editProfileBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
+                startActivity(intent);
+            }
+        });
     }
 
     static Intent editProfileIntentFactory(Context context, int userId) {
