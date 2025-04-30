@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1B5D0"
     tools:context=".SignUpActivity">
 
     <TextView
@@ -28,6 +29,7 @@
         android:gravity="center"
         android:hint="@string/enter_a_username"
         android:inputType="text"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUpHeaderTextView" />
@@ -39,6 +41,7 @@
         android:layout_marginTop="30dp"
         android:autofillHints="Password"
         android:gravity="center"
+        android:textSize="22sp"
         android:hint="@string/enter_a_password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,11 +53,12 @@
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginTop="15dp"
+        android:backgroundTint="#D43BB2"
         android:text="@string/sign_up"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordEditTextView"/>
+        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordEditTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
