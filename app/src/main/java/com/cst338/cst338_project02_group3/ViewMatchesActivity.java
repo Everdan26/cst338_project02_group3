@@ -25,6 +25,8 @@ public class ViewMatchesActivity extends AppCompatActivity {
     private DatingAppRepository repository;
 
     private int loggedInUserId;
+
+    private UserInfo userInfo;
     private List<Matches> matchesList;
     private UserInfo matchedUserInfo;
 
@@ -32,22 +34,21 @@ public class ViewMatchesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityViewMatchesBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-
+        setContentView(binding.getRoot());
+        repository = DatingAppRepository.getRepository(getApplication());
         loggedInUserId = getIntent().getIntExtra(MY_MATCHES_ACTIVITY_USER_ID,-1);
-//
-//        repository = DatingAppRepository.getRepository(getApplication());
-//
-//        loggedInUserId = getIntent().getIntExtra(USER_MATCHES_ACTIVITY_USER_ID, -1);
+
 //        if (loggedInUserId != -1) {
+//            LiveData<UserInfo> userInfoObserver = repository.getUsersWhoLikedMe(userId);
+//            //Get User's info and replace text with relevant info from bio
+//            userInfoObserver.observe(this, userInfo -> {
+//                this.userInfo = userInfo;
 //
-//            repository.getUserInfoByUserId(Matches.getUserId1()).observe(this, userInfo -> {
-//                if (userInfo != null) {
+//                if (this.userInfo != null) {
 //                    binding.textViewName.setText(userInfo.getName());
 //                    binding.textViewAge.setText("Age: " + userInfo.getAge());
 //                    binding.textViewBio.setText("Bio: " + userInfo.getBio());
-//
+
 //                    Glide.with(binding.profileImg.getContext())
 //                            .load(userInfo.getPhoto())
 //                            .into(binding.profileImg);
@@ -66,8 +67,9 @@ public class ViewMatchesActivity extends AppCompatActivity {
     }
 
 
-    static Intent viewMatchesIntentFactory(Context context) {
+    static Intent viewMatchesIntentFactory(Context context, int userId) {
             Intent intent = new Intent(context, ViewMatchesActivity.class);
+            intent.putExtra(MY_MATCHES_ACTIVITY_USER_ID,userId);
             return intent;
         }
     }

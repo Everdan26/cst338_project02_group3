@@ -27,7 +27,7 @@ public interface MatchesDAO {
     @Query("SELECT * FROM " + DatingAppDatabase.MATCHES_TABLE)
     List<Matches> getAllRecords();
 
-    @Query("SELECT * FROM matchesTable WHERE userId2 = :currentUserId AND `like` = 1")
-    LiveData<List<Matches>> getUsersWhoLikedMe(int currentUserId);
+    @Query("SELECT * FROM matchesTable WHERE userId2 = :userId AND `like` = 1")
+    LiveData<List<Matches>> getUsersWhoLikedMe(int userId);
 
 }

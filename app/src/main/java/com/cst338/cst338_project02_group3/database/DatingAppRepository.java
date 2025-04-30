@@ -101,7 +101,8 @@ public class DatingAppRepository {
         return userInfoDAO.getUserInfoByUserId(userId);
     }
 
-    public LiveData<List<Matches>> getUsersWhoLikedMe(int loggedInUserId) {
-        return matchesDAO.getUsersWhoLikedMe(loggedInUserId);
+//get user who liked me
+    public LiveData<List<Matches>> getUsersWhoLikedMe(int userId) {
+        return matchesDAO.getUsersWhoLikedMe(userId);
     }
 }
