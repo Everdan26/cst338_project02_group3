@@ -81,6 +81,14 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
                 userInfoDAO.insert(monte);
 
+                //Test for user matches
+                    MatchesDAO matchesDAO = INSTANCE.matchesDAO();
+                    Matches match = new Matches(1, 2);
+                    matchesDAO.insert(match);
+
+
+
+
 
             });
 
