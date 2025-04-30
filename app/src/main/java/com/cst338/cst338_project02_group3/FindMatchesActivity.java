@@ -23,8 +23,8 @@ public class FindMatchesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityFindMatchesBinding.inflate(getLayoutInflater());
-
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
 
         //back button
         binding.findMatchesBackButton.setOnClickListener(new View.OnClickListener() {

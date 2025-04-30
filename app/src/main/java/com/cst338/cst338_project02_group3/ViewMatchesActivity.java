@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ViewMatchesActivity extends AppCompatActivity {
 
-    private static final String USER_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_MATCHES_ACTIVITY_USER_ID";
+    private static final String MY_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_MATCHES_ACTIVITY_USER_ID";
 
     private ActivityViewMatchesBinding binding;
 
@@ -32,7 +32,10 @@ public class ViewMatchesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityViewMatchesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        loggedInUserId = getIntent().getIntExtra(MY_MATCHES_ACTIVITY_USER_ID,-1);
 //
 //        repository = DatingAppRepository.getRepository(getApplication());
 //
