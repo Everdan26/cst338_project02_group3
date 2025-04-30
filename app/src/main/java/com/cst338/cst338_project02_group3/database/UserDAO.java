@@ -33,6 +33,7 @@ public interface UserDAO {
     @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE)
     void deleteAll();
 
+
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
 

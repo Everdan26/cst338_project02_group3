@@ -6,13 +6,13 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.cst338.cst338_project02_group3.ReportLogs;
+import com.cst338.cst338_project02_group3.database.entities.Matches;
 import com.cst338.cst338_project02_group3.database.entities.Report;
-import com.cst338.cst338_project02_group3.database.entities.User;
-
 import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -94,9 +94,13 @@ public class DatingAppRepository {
         return null;
     }
 
-
     public LiveData<UserInfo> getUserInfoByUserId(int userId) {
         return userInfoDAO.getUserInfoByUserId(userId);
+    }
+
+//get user who liked me
+    public LiveData<List<UserInfo>> getUsersWhoLikedMe(int userId) {
+        return userInfoDAO.getUsersWhoLikedUser(userId);
     }
 
 }
