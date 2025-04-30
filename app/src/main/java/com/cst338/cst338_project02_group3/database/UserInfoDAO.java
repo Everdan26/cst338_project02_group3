@@ -7,7 +7,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 
 @Dao
@@ -17,6 +16,9 @@ public interface UserInfoDAO {
 
     @Delete
     void delete(UserInfo userInfo);
+
+    @Query("DELETE FROM " + DatingAppDatabase.USERINFO_TABLE)
+    void deleteAll();
 
     /**
      * <h2>Retrieves a UserInfo record by userId</h2>

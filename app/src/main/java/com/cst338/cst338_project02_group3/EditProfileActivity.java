@@ -113,7 +113,9 @@ public class EditProfileActivity extends AppCompatActivity {
         }
     }
 
-    static Intent editProfileIntentFactory(Context context) {
-        return new Intent(context, EditProfileActivity.class);
+    static Intent editProfileIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, EditProfileActivity.class);
+        intent.putExtra(EDIT_PROFILE_ACTIVITY_USER_ID, userId);
+        return intent;
     }
 }

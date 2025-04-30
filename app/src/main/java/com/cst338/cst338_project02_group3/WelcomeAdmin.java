@@ -49,10 +49,21 @@ public class WelcomeAdmin extends AppCompatActivity {
             });
         }
 
+        //Logout Button
         binding.logOutButtonAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showLogoutDialog();
+            }
+        });
+
+        //User Reports
+        binding.userReportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ReportLogs.reportLogsIntentFactory(getApplicationContext(),loggedInUserId);
+                startActivity(intent);
+
             }
         });
 
