@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1B5D0"
     tools:context=".ReportLogs">
 
 
@@ -28,6 +29,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="16dip"
         android:padding="8dp"
+        android:textSize="22sp"
         android:text="@string/users_reported"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="105dp"
         android:layout_margin="16dp"
+        android:backgroundTint="#D43BB2"
         android:text="@string/update_log"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="105dp"
         android:layout_margin="16dp"
+        android:backgroundTint="#D43B66"
         android:text="@string/main_menu"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
