@@ -9,8 +9,6 @@ import com.cst338.cst338_project02_group3.ReportLogs;
 import com.cst338.cst338_project02_group3.database.entities.Matches;
 import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
-
-import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 
 import java.util.ArrayList;
@@ -95,7 +93,6 @@ public class DatingAppRepository {
         }
         return null;
     }
-
 
     public LiveData<UserInfo> getUserInfoByUserId(int userId) {
         return userInfoDAO.getUserInfoByUserId(userId);

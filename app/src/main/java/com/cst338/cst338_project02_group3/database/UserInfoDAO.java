@@ -20,6 +20,11 @@ public interface UserInfoDAO {
     @Query("DELETE FROM " + DatingAppDatabase.USERINFO_TABLE)
     void deleteAll();
 
-    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userId == :userId")
+    /**
+     * <h2>Retrieves a UserInfo record by userId</h2>
+     * @param userId ID of retrieved UserInfo record
+     * @return UserInfo record
+     */
+    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userInfoId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
 }
