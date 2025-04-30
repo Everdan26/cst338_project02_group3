@@ -16,13 +16,11 @@ public class UserPreferences {
     private int userInfoId;
     private int age;
     private String gender;
-    private String interest;
 
-    public UserPreferences(int userInfoId, int age, String gender, String interest) {
+    public UserPreferences(int userInfoId, int age, String gender) {
         this.userInfoId = userInfoId;
         this.age = age;
         this.gender = gender;
-        this.interest = interest;
     }
 
     public void setUserPreferencesId(int userPreferencesId) {
@@ -45,10 +43,6 @@ public class UserPreferences {
         return gender;
     }
 
-    public String getInterest() {
-        return interest;
-    }
-
     public void setUserInfoId(int userInfoId) {
         this.userInfoId = userInfoId;
     }
@@ -61,19 +55,15 @@ public class UserPreferences {
         this.gender = gender;
     }
 
-    public void setInterest(String interest) {
-        this.interest = interest;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserPreferences that = (UserPreferences) o;
-        return userPreferencesId == that.userPreferencesId && userInfoId == that.userInfoId && age == that.age && Objects.equals(gender, that.gender) && Objects.equals(interest, that.interest);
+        return userPreferencesId == that.userPreferencesId && userInfoId == that.userInfoId && age == that.age && Objects.equals(gender, that.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userPreferencesId, userInfoId, age, gender, interest);
+        return Objects.hash(userPreferencesId, userInfoId, age, gender);
     }
 }
