@@ -38,4 +38,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
     User getUserByUsernameTest(String username);
+
+    @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
+    void deleteUserByUsername(String username);
 }

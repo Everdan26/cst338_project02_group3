@@ -97,8 +97,14 @@ public class DatabaseTest {
     @Test
     public void insertTest() {
         userDAO.insert(user);
-        User result = userDAO.getUserByUsernameTest("testuser");
-        assertNotNull(result);
+        assertNotNull(userDAO.getUserByUsernameTest("testuser"));
+    }
+
+    @Test public void removeTest() {
+        userDAO.insert(user);
+        assertNotNull(userDAO.getUserByUsernameTest("testuser"));
+        userDAO.deleteUserByUsername("testuser");
+        assertNull(userDAO.getUserByUsernameTest("testuser"));
     }
 
 
