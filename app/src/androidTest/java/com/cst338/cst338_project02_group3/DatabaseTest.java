@@ -1,5 +1,9 @@
 package com.cst338.cst338_project02_group3;
 
+import android.content.Context;
+
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.cst338.cst338_project02_group3.database.DatingAppDatabase;
@@ -14,6 +18,7 @@ import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
+import org.junit.Before;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
@@ -27,7 +32,6 @@ public class DatabaseTest {
     private UserPreferencesDAO userPreferencesDAO;
     private MatchesDAO matchesDAO;
 
-    private int userId;
 
     private User user;
     private UserInfo userInfo;
@@ -35,6 +39,33 @@ public class DatabaseTest {
     private UserPreferences userPreferences;
     private Matches matches;
 
+    private int userId;
+    private int userInfoId;
+
+    @Before
+    public void beforeTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        db = Room.inMemoryDatabaseBuilder(context, DatingAppDatabase.class).build();
+
+        userDAO = db.userDAO();
+        userInfoDAO = db.userInfoDAO();
+        reportDAO = db.reportDAO();
+        userPreferencesDAO = db.userPreferencesDAO();
+        matchesDAO = db.matchesDAO();
+
+
+        user = new User("testuser", "testuser");
+
+        userId = user.getId();
+
+        userInfo = new UserInfo(userId, "Monte", 21, "M", "Test Bio", "csumb.edu");
+
+        userInfoId = userInfo.getUserInfoId();
+
+        report = new Report(userId, "Test Report", false);
+        userPreferences = new UserPreferences(userInfoId, 21, "F");
+
+    }
 
 
 }
