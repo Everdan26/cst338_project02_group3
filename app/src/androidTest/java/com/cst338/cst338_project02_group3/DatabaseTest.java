@@ -1,5 +1,9 @@
 package com.cst338.cst338_project02_group3;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import android.content.Context;
 
 import androidx.room.Room;
@@ -20,11 +24,15 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
 
+//    @Rule
+//    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
     private DatingAppDatabase db;
 
     private UserDAO userDAO;
@@ -84,6 +92,13 @@ public class DatabaseTest {
         matches = null;
 
         db.close();
+    }
+
+    @Test
+    public void insertTest() {
+        userDAO.insert(user);
+        User result = userDAO.getUserByUsernameTest("testuser");
+        assertNotNull(result);
     }
 
 

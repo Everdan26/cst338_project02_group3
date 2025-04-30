@@ -25,15 +25,17 @@ public interface UserDAO {
 
     //Just gets all the record of Users in a List
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE)
-    List<User> getAllRecords();
+    LiveData<List<User>> getAllRecords();
 
     @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE)
     void deleteAll();
-
 
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
 
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
+    User getUserByUsernameTest(String username);
 }
