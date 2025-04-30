@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/editProfilePageTitle"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="75dp"
         android:layout_margin="16dp"
         android:gravity="center"
         android:text="@string/edit_your_profile"
@@ -20,60 +20,154 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/currentAgeLabelTextView"
+        android:layout_width="104dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="34dp"
+        android:text="@string/current_age"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editAgeEditText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/currentAgeTextView"
+        android:layout_width="26dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:text=""
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@id/currentAgeLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/currentAgeLabelTextView" />
+
     <EditText
         android:id="@+id/editAgeEditText"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_margin="32dp"
         android:hint="@string/edit_your_age"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editProfilePageTitle" />
 
+    <TextView
+        android:id="@+id/currentGenderLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:text="@string/current_gender"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/editGenderEditText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/currentGenderTextView"
+        android:layout_width="88dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:text=""
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@id/currentGenderLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/currentGenderLabelTextView" />
+
     <EditText
         android:id="@+id/editGenderEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="138dp"
+        android:layout_height="48dp"
         android:layout_margin="32dp"
         android:hint="@string/edit_your_gender"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editAgeEditText" />
+
+    <TextView
+        android:id="@+id/currentBioLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/current_bio"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editGenderEditText" />
+
+    <TextView
+        android:id="@+id/currentBioTextView"
+        android:layout_width="275dp"
+        android:layout_height="72dp"
+        android:scrollbars="vertical"
+        android:text=""
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentBioLabelTextView" />
 
     <EditText
         android:id="@+id/editBioEditText"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_margin="32dp"
+        android:layout_height="48dp"
         android:hint="@string/edit_your_bio"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textMultiLine"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editGenderEditText" />
+        app:layout_constraintTop_toBottomOf="@id/currentBioTextView" />
+
+    <TextView
+        android:id="@+id/currentPfpLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/current_pfp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editBioEditText" />
+
+    <TextView
+        android:id="@+id/currentPfpTextView"
+        android:layout_width="275dp"
+        android:layout_height="48dp"
+        android:scrollbars="vertical"
+        android:text=""
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentPfpLabelTextView" />
 
     <EditText
         android:id="@+id/editPfpEditText"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_margin="32dp"
+        android:layout_height="48dp"
         android:hint="@string/change_your_profile_picture"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textMultiLine"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editBioEditText" />
+        app:layout_constraintTop_toBottomOf="@id/currentPfpTextView" />
 
     <Button
         android:id="@+id/editProfileSaveChangesButton"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:text="@string/save_changes"
         android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPfpEditText" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

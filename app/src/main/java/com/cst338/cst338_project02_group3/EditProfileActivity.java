@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 
 
@@ -44,8 +45,20 @@ public class EditProfileActivity extends AppCompatActivity {
             });
         }
 
-        // TODO: Display the user's current information
-        // TODO: ^^^ Add TextViews for above task to layout
+        // =============== DISPLAYING CURRENT INFO OF USER ===============
+        // Makes currentBioTextView vertically scrollable (for yappers lol)
+        binding.currentBioTextView.setMovementMethod(new ScrollingMovementMethod());
+        // Makes currentPfpTextView vertically scrollable
+        binding.currentPfpTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        binding.currentAgeTextView.setText(userInfo.getAge());
+        binding.currentGenderTextView.setText(userInfo.getGender());
+        binding.currentBioTextView.setText(userInfo.getBio());
+        binding.currentPfpTextView.setText(userInfo.getPhoto());
+
+        // TODO: Add "name" field to UserInfo (will require edits to relevant files)
+        // TODO: Add default values to database for testing
+        // TODO: ^^^ Test to see if this activity works to change default values
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {

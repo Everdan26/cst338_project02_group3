@@ -28,4 +28,8 @@
     <string name="welcome_user">Welcome %1$s!</string>
     <string name="admin">Admin</string>
     <string name="save_changes">Save Changes</string>
+    <string name="current_age">Current Age:</string>
+    <string name="current_gender">Current Gender:</string>
+    <string name="current_bio">Current Bio:</string>
+    <string name="current_pfp">Current PFP:</string>
 </resources>
