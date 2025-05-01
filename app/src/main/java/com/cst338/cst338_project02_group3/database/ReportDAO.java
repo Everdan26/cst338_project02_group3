@@ -25,6 +25,6 @@ public interface ReportDAO {
     List<Report> getAllRecords();
 
     @Query("SELECT * FROM " + DatingAppDatabase.REPORT_TABLE + " WHERE userId = :userId ")
-    int getReportByUserId(int userId);
+    Report getReportByUserId(int userId);
 
 }
