@@ -14,7 +14,6 @@ public class IntentTest {
     private static final int TEST_VALUE = 1;
     /**
      * Keys into intent extras. Add them as you add tests.
-     * setUp and tearDown will likely need
      */
     private static final String USER_PROFILE_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_PROFILE_ACTIVITY_USER_ID";
 
@@ -26,4 +25,6 @@ public class IntentTest {
 
         assertEquals(TEST_VALUE, intent.getIntExtra(USER_PROFILE_ACTIVITY_USER_ID, -1));
     }
+
+
 }
