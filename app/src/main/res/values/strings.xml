@@ -52,5 +52,8 @@
     <string name="preferred_age">Preferred Age</string>
     <string name="preferred_gender">Preferred Gender</string>
     <string name="find_matches_button">Find Matches!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="report">Report</string>
 
 </resources>

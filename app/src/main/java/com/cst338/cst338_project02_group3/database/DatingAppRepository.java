@@ -103,4 +103,8 @@ public class DatingAppRepository {
         return userInfoDAO.getUsersWhoLikedUser(userId);
     }
 
+    public LiveData<UserInfo> getRandomUserInfo(String prefGender) {
+        return userInfoDAO.getRandomUserInfo(prefGender);
+    }
+
 }

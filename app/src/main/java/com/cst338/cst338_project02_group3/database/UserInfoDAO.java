@@ -30,8 +30,13 @@ public interface UserInfoDAO {
     @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userInfoId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
 
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE gender == :prefGender ORDER BY random() LIMIT 1")
+    LiveData<UserInfo> getRandomUserInfo(String prefGender);
+
     @Query("SELECT u.*  FROM userInfoTable u " +
             "INNER JOIN matchesTable m ON u.userId = m.userId1 " +
             "WHERE m.userId2 = :userId AND m.`like` =1" )
     LiveData<List<UserInfo>> getUsersWhoLikedUser(int userId);
+
 }

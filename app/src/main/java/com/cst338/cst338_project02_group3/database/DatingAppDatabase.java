@@ -76,6 +76,7 @@ public abstract class DatingAppDatabase extends RoomDatabase {
 
                 userDAO.insert(testUser1);
 
+                //User Info
                 UserInfo monte = new UserInfo(2, "Monte", 21, "M",
                         "Your favorite otter mascot.",
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
