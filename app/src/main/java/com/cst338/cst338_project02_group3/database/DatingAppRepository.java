@@ -102,4 +102,9 @@ public class DatingAppRepository {
     public LiveData<List<Matches>> getUsersWhoLikedMe(int userId) {
         return matchesDAO.getUsersWhoLikedMe(userId);
     }
+
+    // Updating userInfo
+    public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
+        userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
+    }
 }

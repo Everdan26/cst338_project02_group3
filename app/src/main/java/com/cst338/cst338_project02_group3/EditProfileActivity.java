@@ -42,13 +42,17 @@ public class EditProfileActivity extends AppCompatActivity {
             userObserver.observe(this, userInfo -> {
                 this.userInfo = userInfo;
                 if (this.userInfo != null) {
+                    String currentName = getString(R.string.currentNameString, userInfo.getName());
                     String currentAge = getString(R.string.currentAgeString, userInfo.getAge());
-                    binding.currentAgeTextView.setText(currentAge);
+                    String currentGender = getString(R.string.currentGenderString, userInfo.getGender());
+                    String currentBio = getString(R.string.currentBioString, userInfo.getBio());
+                    String currentPfp = getString(R.string.currentPfpString, userInfo.getPhoto());
 
-                    // TODO: Set up templates for the rest of the fields below
-                    binding.currentGenderTextView.setText(userInfo.getGender());
-                    binding.currentBioTextView.setText(userInfo.getBio());
-                    binding.currentPfpTextView.setText(userInfo.getPhoto());
+                    binding.currentNameTextView.setText(currentName);
+                    binding.currentAgeTextView.setText(currentAge);
+                    binding.currentGenderTextView.setText(currentGender);
+                    binding.currentBioTextView.setText(currentBio);
+                    binding.currentPfpTextView.setText(currentPfp);
                 }
             });
         }
@@ -61,8 +65,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // TODO: Consider using dialog boxes to edit data
         // TODO: Consider using LinearLayout for this page
+
         // TODO: Add default values to database for testing
         // TODO: ^^^ Test to see if this activity works to change default values
+        // ^^^^^ Add set up, linked to sign up activity
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +98,10 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 editProfile();
                 // TODO: Add toast confirm changes were saved
-                // Reloading page
-                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
+                // Redirecting to welcome page
+//                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
+//                startActivity(intent);
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });
@@ -106,6 +114,7 @@ public class EditProfileActivity extends AppCompatActivity {
         alertBuilder.create().show();
     }
     private void editProfile() {
+        String nameInput = binding.editNameEditText.getText().toString();
         String ageInput = binding.editAgeEditText.getText().toString();
         String genderInput = binding.editGenderEditText.getText().toString();
         String bioInput = binding.editBioEditText.getText().toString();
@@ -119,6 +128,9 @@ public class EditProfileActivity extends AppCompatActivity {
             //         @Query("UPDATE " + ... + " SET ... "
             //         void updateProfile(String name, int age...)
 
+        if (!nameInput.isEmpty()) {
+            userInfo.setName(nameInput);
+        }
         if (!ageInput.isEmpty()) {
             userInfo.setAge(parseInt(ageInput));
         }
@@ -132,7 +144,8 @@ public class EditProfileActivity extends AppCompatActivity {
             userInfo.setPhoto(pfpInput);
         }
 
-
+        repository.updateUserInfo(userInfo.getName(), userInfo.getAge(), userInfo.getGender(),
+                userInfo.getBio(), userInfo.getPhoto(), userInfo.getUserId());
     }
 
     static Intent editProfileIntentFactory(Context context, int userId) {
