@@ -13,9 +13,6 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="DatabaseTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="deleteReport()">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2025-05-01T16:46:50.328410100Z">
@@ -28,6 +25,9 @@
         <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="updateReportStatus()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="signUpActivityIntentTest()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
