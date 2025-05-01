@@ -25,7 +25,10 @@ public interface UserDAO {
 
     //Just gets all the record of Users in a List
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE)
-    List<User> getAllRecords();
+    LiveData<List<User>> getAllRecords();
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE)
+    List<User> getAllRecordsTest();
 
     @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE)
     void deleteAll();
@@ -34,6 +37,18 @@ public interface UserDAO {
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
 
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE id == :userId")
+    User getUserByUserIdTest(int userId);
+
     @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
+    User getUserByUsernameTest(String username);
+
+    @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
+    void deleteUserByUsername(String username);
+
+    @Query("UPDATE " + DatingAppDatabase.USER_TABLE + " SET password = :password WHERE username == :username")
+    void updatePassword(String username, String password);
 }

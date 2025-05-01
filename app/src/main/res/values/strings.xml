@@ -59,5 +59,13 @@
     <string name="currentGenderString">%1$s</string>
     <string name="currentBioString">%1$s</string>
     <string name="currentPfpString">%1$s</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="report">Report</string>
+    <string name="edit_your_preferences">Edit your Preferences</string>
+    <string name="age">Age</string>
+    <string name="ageColon">Age:</string>
+    <string name="genderColon">Gender:</string>
+    <string name="gender">Gender</string>
 
 </resources>

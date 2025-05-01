@@ -19,17 +19,18 @@ import androidx.lifecycle.LiveData;
 
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
 import com.cst338.cst338_project02_group3.database.entities.User;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.databinding.ActivityWelcomeUserBinding;
 
 public class WelcomeUser extends AppCompatActivity {
 
     private static final String WELCOME_ACTIVITY_USER_ID = "com.cst338.project02_group3.WELCOME_ACTIVITY_USER_ID";
-
     private ActivityWelcomeUserBinding binding;
 
     private DatingAppRepository repository;
     private int loggedInUserId;
     private User user;
+    private UserInfo userInfo;
 
 
     @Override
@@ -82,11 +83,11 @@ public class WelcomeUser extends AppCompatActivity {
             }
         });
 
-        // Wiring up buttons to other pages (find matches, view matches, edit profile)
+        // Find Matches
         binding.findMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext());
+                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext(),"M");
                 startActivity(intent);
             }
         });
@@ -148,4 +149,7 @@ public class WelcomeUser extends AppCompatActivity {
 
         startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext()));
     }
+
+
+
 }
