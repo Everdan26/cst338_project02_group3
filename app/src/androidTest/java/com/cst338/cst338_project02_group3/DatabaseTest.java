@@ -130,4 +130,12 @@ public class DatabaseTest {
         userDAO.updatePassword("testuser", "newPassword");
         assertEquals("newPassword", userDAO.getUserByUsernameTest("testuser").getPassword());
     }
+
+    //Report Logs Test
+    @Test
+    public void insertReport() {
+        reportDAO.insert(report);
+        assertNotNull(reportDAO.getReportByUserId(report.getUserId()));
+    }
+
 }
