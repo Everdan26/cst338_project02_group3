@@ -22,4 +22,7 @@ public interface UserInfoDAO {
 
     @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE gender == :prefGender ORDER BY random() LIMIT 1")
+    LiveData<UserInfo> getRandomUserInfo(String prefGender);
 }

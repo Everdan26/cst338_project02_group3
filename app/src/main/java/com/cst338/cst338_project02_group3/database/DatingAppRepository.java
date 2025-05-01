@@ -105,4 +105,8 @@ public class DatingAppRepository {
     public LiveData<List<Matches>> getUsersWhoLikedMe(int userId) {
         return matchesDAO.getUsersWhoLikedMe(userId);
     }
+
+    public LiveData<UserInfo> getRandomUserInfo(String prefGender) {
+        return userInfoDAO.getRandomUserInfo(prefGender);
+    }
 }

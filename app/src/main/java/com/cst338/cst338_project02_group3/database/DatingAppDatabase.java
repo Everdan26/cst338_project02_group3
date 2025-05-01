@@ -19,7 +19,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 10, exportSchema = false)
+@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 12, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
     public static final String USER_TABLE = "userTable";
@@ -76,6 +76,7 @@ public abstract class DatingAppDatabase extends RoomDatabase {
 
                 userDAO.insert(testUser1);
 
+                //User Info
                 UserInfo monte = new UserInfo(2, "Monte", 21, "M",
                         "Your favorite otter mascot.",
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
