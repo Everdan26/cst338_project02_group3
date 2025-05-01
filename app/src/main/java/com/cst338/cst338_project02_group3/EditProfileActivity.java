@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -42,6 +43,7 @@ public class EditProfileActivity extends AppCompatActivity {
             userObserver.observe(this, userInfo -> {
                 this.userInfo = userInfo;
                 if (this.userInfo != null) {
+                    // ===== DISPLAYING CURRENT INFO OF USER =====
                     String currentName = getString(R.string.currentNameString, userInfo.getName());
                     String currentAge = getString(R.string.currentAgeString, userInfo.getAge());
                     String currentGender = getString(R.string.currentGenderString, userInfo.getGender());
@@ -57,18 +59,10 @@ public class EditProfileActivity extends AppCompatActivity {
             });
         }
 
-        // =============== DISPLAYING CURRENT INFO OF USER ===============
         // Makes currentBioTextView vertically scrollable (for yappers lol)
         binding.currentBioTextView.setMovementMethod(new ScrollingMovementMethod());
         // Makes currentPfpTextView vertically scrollable
         binding.currentPfpTextView.setMovementMethod(new ScrollingMovementMethod());
-
-        // TODO: Consider using dialog boxes to edit data
-        // TODO: Consider using LinearLayout for this page
-
-        // TODO: Add default values to database for testing
-        // TODO: ^^^ Test to see if this activity works to change default values
-        // ^^^^^ Add set up, linked to sign up activity
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -78,14 +72,6 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        //back button
-//        binding.editProfileBackButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void confirmationDialog() {
@@ -97,10 +83,8 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editProfile();
-                // TODO: Add toast confirm changes were saved
+                Toast.makeText(getApplicationContext(), "Your changes were successfully saved!", Toast.LENGTH_SHORT).show();
                 // Redirecting to welcome page
-//                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
-//                startActivity(intent);
                 Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
@@ -119,14 +103,6 @@ public class EditProfileActivity extends AppCompatActivity {
         String genderInput = binding.editGenderEditText.getText().toString();
         String bioInput = binding.editBioEditText.getText().toString();
         String pfpInput = binding.editPfpEditText.getText().toString();
-
-        // NOTE: I'm gonna try to edit the data using the setters in UserInfo.java
-        //       instead of using SQL queries. We'll see if this works...
-
-        // TODO: Not working this way. Try SQL queries to change info within the table.
-            // IDEA 1: Use a single query that updates all relevant fields of a userInfo record
-            //         @Query("UPDATE " + ... + " SET ... "
-            //         void updateProfile(String name, int age...)
 
         if (!nameInput.isEmpty()) {
             userInfo.setName(nameInput);
