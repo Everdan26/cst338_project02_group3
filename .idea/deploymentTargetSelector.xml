@@ -28,6 +28,8 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="signUpActivityIntentTest()">
+      </SelectionState>
+      <SelectionState runConfigName="welcomeUserIntentTest()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
