@@ -18,9 +18,6 @@
             android:name=".EditPreferencesActivity"
             android:exported="false" />
         <activity
-            android:name=".FindMatchesResult"
-            android:exported="false" />
-        <activity
             android:name=".ReportLogs"
             android:exported="false" />
         <activity
