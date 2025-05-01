@@ -13,8 +13,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-=======
-      <SelectionState runConfigName="insertReport()">
+      <SelectionState runConfigName="DatabaseTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
