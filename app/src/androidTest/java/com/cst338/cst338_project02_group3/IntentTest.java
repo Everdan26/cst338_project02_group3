@@ -17,6 +17,8 @@ public class IntentTest {
     private static final String USER_PROFILE_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_PROFILE_ACTIVITY_USER_ID";
     private static final String WELCOME_ACTIVITY_USER_ID = "com.cst338.project02_group3.WELCOME_ACTIVITY_USER_ID";
 
+    private static final String MY_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_MATCHES_ACTIVITY_USER_ID";
+
     @Test
     public void userProfileIntentTest() {
         Context context = ApplicationProvider.getApplicationContext();
@@ -33,5 +35,14 @@ public class IntentTest {
         intent.putExtra(WELCOME_ACTIVITY_USER_ID, TEST_VALUE);
 
         assertEquals(TEST_VALUE, intent.getIntExtra(WELCOME_ACTIVITY_USER_ID, -1));
+    }
+
+    @Test
+    public void viewMatchesActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = new Intent(context, ViewMatchesActivity.class);
+        intent.putExtra(MY_MATCHES_ACTIVITY_USER_ID, TEST_VALUE);
+
+        assertEquals(TEST_VALUE, intent.getIntExtra(MY_MATCHES_ACTIVITY_USER_ID, -1));
     }
 }

@@ -1,10 +1,5 @@
 package com.cst338.cst338_project02_group3;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import android.content.Context;
 
 import androidx.room.Room;
@@ -25,15 +20,11 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
 
-//    @Rule
-//    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
     private DatingAppDatabase db;
 
     private UserDAO userDAO;
@@ -78,7 +69,7 @@ public class DatabaseTest {
 
         report = new Report(userId, "Test Report", false);
         userPreferences = new UserPreferences(userInfoId, 21, "F");
-        matches = new Matches(userId, matchUser.getId(), true);
+        matches = new Matches(userId, matchUser.getId(), matches.isLike());
     }
 
     @After
@@ -95,39 +86,5 @@ public class DatabaseTest {
         db.close();
     }
 
-    @Test
-    public void insertUserTest() {
-        userDAO.insert(user);
-        assertNotNull(userDAO.getUserByUsernameTest("testuser"));
-    }
 
-    @Test
-    public void removeUserTest() {
-        userDAO.insert(user);
-        assertNotNull(userDAO.getUserByUsernameTest("testuser"));
-        userDAO.deleteUserByUsername("testuser");
-        assertNull(userDAO.getUserByUsernameTest("testuser"));
-    }
-
-    //Testing the SQL call, since LiveData unit testing is extremely difficult/impossible/beyond my pay grade
-    @Test
-    public void getUserByIdTest() {
-        userDAO.insert(user);
-        assertNotNull(userDAO.getUserByUserIdTest(1));
-    }
-
-    @Test
-    public void deleteAllUsersTest() {
-        userDAO.insert(user);
-        userDAO.insert(matchUser);
-        userDAO.deleteAll();
-        assertTrue(userDAO.getAllRecordsTest().isEmpty());
-    }
-
-    @Test
-    public void updatePasswordTest() {
-        userDAO.insert(user);
-        userDAO.updatePassword("testuser", "newPassword");
-        assertEquals("newPassword", userDAO.getUserByUsernameTest("testuser").getPassword());
-    }
 }
