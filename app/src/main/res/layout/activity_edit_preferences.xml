@@ -24,7 +24,8 @@
         android:id="@+id/editPreferencesAgeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/ageColon"
         android:textSize="18sp"
@@ -36,8 +37,8 @@
         android:id="@+id/editPreferencesAgeEditText"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/age"
         android:importantForAutofill="no"
         android:inputType="number"
@@ -45,6 +46,29 @@
         app:layout_constraintStart_toEndOf="@id/editPreferencesAgeTextView"
         app:layout_constraintTop_toBottomOf="@id/editPreferencesTextView" />
 
+    <TextView
+        android:id="@+id/editPreferencesGenderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/genderColon"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPreferencesAgeTextView" />
+
+    <EditText
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/gender"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/editPreferencesGenderTextView"
+        app:layout_constraintTop_toBottomOf="@+id/editPreferencesAgeEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
