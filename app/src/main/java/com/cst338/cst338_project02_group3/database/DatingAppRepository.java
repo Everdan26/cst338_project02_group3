@@ -14,6 +14,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -105,6 +106,8 @@ public class DatingAppRepository {
 
     // Updating userInfo
     public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
-        userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
+        CompletableFuture.runAsync(() -> {
+            userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
+        });
     }
 }
