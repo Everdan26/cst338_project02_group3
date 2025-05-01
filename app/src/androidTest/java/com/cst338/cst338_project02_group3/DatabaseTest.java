@@ -112,7 +112,7 @@ public class DatabaseTest {
 
     //Matches Entity Test
     @Test
-    public void insertMatchTest(){
+    public void insertMatchTest() {
         userDAO.insert(user);
         userDAO.insert(matchUser);
 
@@ -126,4 +126,14 @@ public class DatabaseTest {
         assertTrue(retrievedMatch.isLike());
     }
 
+    //Delete all matches test
+    public void deleteAllMatchesTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+        Matches match = new Matches(user.getId(), matchUser.getId(), true);
+        matchesDAO.insert(match);
+
+        matchesDAO.deleteAll();
+        assertTrue(matchesDAO.getAllMatches().isEmpty());
+    }
 }
