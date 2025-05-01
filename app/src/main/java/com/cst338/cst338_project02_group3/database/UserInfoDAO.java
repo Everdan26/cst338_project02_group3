@@ -25,6 +25,6 @@ public interface UserInfoDAO {
      * @param userId ID of retrieved UserInfo record
      * @return UserInfo record
      */
-    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userInfoId == :userId")
+    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
 }

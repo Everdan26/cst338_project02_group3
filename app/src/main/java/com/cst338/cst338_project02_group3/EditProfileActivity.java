@@ -32,8 +32,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(binding.getRoot());
         repository = DatingAppRepository.getRepository(getApplication());
 
         // Getting id and userInfo of current user
@@ -42,6 +41,15 @@ public class EditProfileActivity extends AppCompatActivity {
             LiveData<UserInfo> userObserver = repository.getUserInfoByUserId(loggedInUserId);
             userObserver.observe(this, userInfo -> {
                 this.userInfo = userInfo;
+                if (this.userInfo != null) {
+                    String currentAge = getString(R.string.currentAgeString, userInfo.getAge());
+                    binding.currentAgeTextView.setText(currentAge);
+
+                    // TODO: Set up templates for the rest of the fields below
+                    binding.currentGenderTextView.setText(userInfo.getGender());
+                    binding.currentBioTextView.setText(userInfo.getBio());
+                    binding.currentPfpTextView.setText(userInfo.getPhoto());
+                }
             });
         }
 
@@ -51,14 +59,12 @@ public class EditProfileActivity extends AppCompatActivity {
         // Makes currentPfpTextView vertically scrollable
         binding.currentPfpTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        binding.currentAgeTextView.setText(userInfo.getAge());
-        binding.currentGenderTextView.setText(userInfo.getGender());
-        binding.currentBioTextView.setText(userInfo.getBio());
-        binding.currentPfpTextView.setText(userInfo.getPhoto());
-
-        // TODO: Add "name" field to UserInfo (will require edits to relevant files)
+        // TODO: Add "name" field to layout
+        // TODO: Consider using dialog boxed to edit data
         // TODO: Add default values to database for testing
         // TODO: ^^^ Test to see if this activity works to change default values
+
+        // TODO: EXTRA IMPORTANT: View is crashing when user clicks on button in welcome page. FIX!
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +93,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editProfile();
+                // TODO: Add toast confirm changes were saved
                 // Reloading page
                 Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
@@ -98,6 +105,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 alertDialog.dismiss();
             }
         });
+
     }
     private void editProfile() {
         String ageInput = binding.editAgeEditText.getText().toString();
