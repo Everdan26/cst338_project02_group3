@@ -59,12 +59,10 @@ public class EditProfileActivity extends AppCompatActivity {
         // Makes currentPfpTextView vertically scrollable
         binding.currentPfpTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        // TODO: Add "name" field to layout
-        // TODO: Consider using dialog boxed to edit data
+        // TODO: Consider using dialog boxes to edit data
+        // TODO: Consider using LinearLayout for this page
         // TODO: Add default values to database for testing
         // TODO: ^^^ Test to see if this activity works to change default values
-
-        // TODO: EXTRA IMPORTANT: View is crashing when user clicks on button in welcome page. FIX!
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +103,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 alertDialog.dismiss();
             }
         });
-
+        alertBuilder.create().show();
     }
     private void editProfile() {
         String ageInput = binding.editAgeEditText.getText().toString();
@@ -115,6 +113,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // NOTE: I'm gonna try to edit the data using the setters in UserInfo.java
         //       instead of using SQL queries. We'll see if this works...
+
+        // TODO: Not working this way. Try SQL queries to change info within the table.
+            // IDEA 1: Use a single query that updates all relevant fields of a userInfo record
+            //         @Query("UPDATE " + ... + " SET ... "
+            //         void updateProfile(String name, int age...)
 
         if (!ageInput.isEmpty()) {
             userInfo.setAge(parseInt(ageInput));
@@ -128,6 +131,8 @@ public class EditProfileActivity extends AppCompatActivity {
         if (!pfpInput.isEmpty()) {
             userInfo.setPhoto(pfpInput);
         }
+
+
     }
 
     static Intent editProfileIntentFactory(Context context, int userId) {

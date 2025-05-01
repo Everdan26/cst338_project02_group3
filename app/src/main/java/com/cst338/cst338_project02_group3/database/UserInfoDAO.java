@@ -27,4 +27,5 @@ public interface UserInfoDAO {
      */
     @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
+
 }

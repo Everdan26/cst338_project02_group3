@@ -53,5 +53,11 @@
     <string name="preferred_gender">Preferred Gender</string>
     <string name="find_matches_button">Find Matches!</string>
     <string name="currentAgeString">%1$d</string>
+    <string name="current_name">Current Name:</string>
+    <string name="edit_your_name">Edit your name</string>
+    <string name="currentNameString">%1$s</string>
+    <string name="currentGenderString">%1$s</string>
+    <string name="currentBioString">%1$s</string>
+    <string name="currentPfpString">%1$s</string>
 
 </resources>
