@@ -66,15 +66,21 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 userDAO.insert(admin2);
 
                 User testUser1 = new User("testuser1", "testuser1");
-
                 userDAO.insert(testUser1);
 
+                User testUser2 = new User("testuser2", "testuser2");
+                userDAO.insert(testUser2);
+
+                User testUser3 = new User("testuser3", "testuser3");
+                userDAO.insert(testUser3);
+
+                User testUser4 = new User("testuser4", "testuser4");
+                userDAO.insert(testUser4);
 
                 //Report User test
                 ReportDAO repDAO = INSTANCE.reportDAO();
                 repDAO.insert(new Report(testUser1.getId(),"Inappropriate Picture",testUser1.isBan()));
 
-                userDAO.insert(testUser1);
 
                 //User Info
                 UserInfo monte = new UserInfo(2, "Monte", 21, "M",
@@ -82,13 +88,26 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
                 userInfoDAO.insert(monte);
 
+//                UserInfo boy = new UserInfo(3, "Guy", 22, "M",
+//                        "Your favorite dude.",
+//                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
+//                userInfoDAO.insert(boy);
+//
+//                UserInfo girl = new UserInfo(4, "Gal", 20, "F",
+//                        "Your favorite girl.",
+//                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
+//                userInfoDAO.insert(girl);
+
                 //Test for user matches
                     MatchesDAO matchesDAO = INSTANCE.matchesDAO();
                     Matches match = new Matches(1, 2, true);
                     matchesDAO.insert(match);
 
-                Matches match2 = new Matches(2, 1, true);
-                matchesDAO.insert(match2);
+                    Matches match2 = new Matches(2, 1, true);
+                    matchesDAO.insert(match2);
+
+//                    Matches match3 = new Matches(3, 1, true);
+//                    matchesDAO.insert(match3);
 
             });
 

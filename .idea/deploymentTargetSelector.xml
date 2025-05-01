@@ -4,15 +4,16 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-05-01T00:25:30.385738500Z">
+        <DropdownSelection timestamp="2025-04-30T06:33:57.319233Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\neilc\.android\avd\Small_Phone_API_34.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\shann\.android\avd\Medium_Phone.avd" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
+=======
       <SelectionState runConfigName="insertReport()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
