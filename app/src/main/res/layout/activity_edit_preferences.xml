@@ -50,7 +50,7 @@
         android:id="@+id/editPreferencesGenderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:text="@string/genderColon"
         android:textSize="18sp"
@@ -62,7 +62,7 @@
         android:id="@+id/editPreferencesGenderEditText"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="8dp"
         android:hint="@string/gender"
         android:importantForAutofill="no"
@@ -70,6 +70,55 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/editPreferencesGenderTextView"
         app:layout_constraintTop_toBottomOf="@+id/editPreferencesAgeEditText" />
+
+    <TextView
+        android:id="@+id/currentPreferencesHeadingTextView"
+        android:layout_width="280dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/your_current_preferences"
+        android:textSize="24sp"
+        android:textStyle=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editPreferencesGenderEditText" />
+
+    <TextView
+        android:id="@+id/currentAgePreferenceLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/ageColon"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentPreferencesHeadingTextView" />
+
+    <TextView
+        android:id="@+id/currentAgePreferenceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="FILLER"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/currentAgePreferenceLabelTextView"
+        app:layout_constraintStart_toEndOf="@id/currentAgePreferenceLabelTextView" />
+
+    <TextView
+        android:id="@+id/currentGenderPreferenceLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/genderColon"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentAgePreferenceLabelTextView" />
 
     <Button
         android:id="@+id/editPreferencesSaveChangesButton"
@@ -79,9 +128,9 @@
         android:gravity="center"
         android:text="@string/save_changes"
         android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@id/editPreferencesBackButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editPreferencesGenderEditText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/editPreferencesBackButton"
@@ -91,8 +140,8 @@
         android:gravity="center"
         android:text="@string/back"
         android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editPreferencesSaveChangesButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
