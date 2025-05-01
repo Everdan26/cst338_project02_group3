@@ -1,6 +1,7 @@
 package com.cst338.cst338_project02_group3;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ public class IntentTest {
     private static final String MAIN_ACTIVITY_USER_ID = "com.cst338.project02_group3.MAIN_ACTIVITY_USER_ID";
     private static final String WELCOME_ADMIN_USER_ID = "com.cst338.project02_group3.WELCOME_ADMIN_USER_ID";
     private static final String MY_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_MATCHES_ACTIVITY_USER_ID";
+    private static final String REPORT_LOGS_USER_ADMIN = "com.cst338.project02_group3.REPORT_LOGS_USER_ADMIN";
 
     @Test
     public void userProfileIntentTest() {
@@ -64,4 +66,25 @@ public class IntentTest {
 
         assertEquals(TEST_VALUE, intent.getIntExtra(MY_MATCHES_ACTIVITY_USER_ID, -1));
     }
+
+    //Intent for Sign Up Activity
+    @Test
+    public void signUpActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = new Intent(context, SignUpActivity.class);
+        assertNotNull(intent);
+
+    }
+
+    //Intent for Report Logs
+    @Test
+    public void reportLogsActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = new Intent(context, ReportLogs.class);
+        intent.putExtra(REPORT_LOGS_USER_ADMIN, TEST_VALUE);
+
+        assertEquals(TEST_VALUE, intent.getIntExtra(REPORT_LOGS_USER_ADMIN, -1));
+
+    }
+
 }
