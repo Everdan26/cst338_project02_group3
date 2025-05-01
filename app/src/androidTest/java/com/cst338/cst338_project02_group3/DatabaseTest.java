@@ -1,6 +1,7 @@
 package com.cst338.cst338_project02_group3;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -134,6 +135,33 @@ public class DatabaseTest {
     public void insertReport() {
         reportDAO.insert(report);
         assertNotNull(reportDAO.getReportByUserId(report.getUserId()));
+
     }
+
+    @Test
+    public void deleteReport() {
+        reportDAO.insert(report);
+        reportDAO.deleteReport(userId);
+
+        //User should not be in the data, so should be false
+        assertFalse(reportDAO.isReportInData(userId));
+    }
+
+    @Test
+    public void updateReportStatus() {
+        //Insert something first before updating
+        reportDAO.insert(report);
+
+        //Ban Status should be false
+        assertFalse(reportDAO.banStatus(report.getUserId()));
+
+        //Updating the ban status to true
+        reportDAO.updateBanStatus(true,report.getUserId());
+
+        //Checking if it got updated the status
+        assertTrue(reportDAO.banStatus(report.getUserId()));
+
+    }
+
 
 }
