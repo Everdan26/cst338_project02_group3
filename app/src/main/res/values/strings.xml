@@ -55,5 +55,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="report">Report</string>
+    <string name="edit_your_preferences">Edit your Preferences</string>
+    <string name="age">Age</string>
+    <string name="ageColon">Age:</string>
 
 </resources>
