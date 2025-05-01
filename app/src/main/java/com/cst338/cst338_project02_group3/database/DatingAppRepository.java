@@ -10,6 +10,7 @@ import com.cst338.cst338_project02_group3.database.entities.Matches;
 import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
+import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +106,14 @@ public class DatingAppRepository {
 
     public LiveData<UserInfo> getRandomUserInfo(String prefGender) {
         return userInfoDAO.getRandomUserInfo(prefGender);
+    }
+
+    public LiveData<UserPreferences> getUserPreferencesByInfoId(int userInfoId) {
+        return userPreferencesDAO.getUserPreferencesByInfoId(userInfoId);
+    }
+
+    public void updateUserPreferences(int age, String gender, int userPreferencesId) {
+        userPreferencesDAO.updateUserPreferences(age, gender, userPreferencesId);
     }
 
 }

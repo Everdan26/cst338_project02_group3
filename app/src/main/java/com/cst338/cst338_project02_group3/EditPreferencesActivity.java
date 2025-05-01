@@ -49,7 +49,12 @@ public class EditPreferencesActivity extends AppCompatActivity {
             });
         }
 
-        //TODO: Get the UserPreferences file by UserInfoID. May have to write a new SQL call for this.
+        if (userInfo != null) {
+            LiveData<UserPreferences> userPreferencesObserver = repository.getUserPreferencesByInfoId(userInfo.getUserInfoId());
+            userPreferencesObserver.observe(this, userPreferences -> {
+                this.userPreferences = userPreferences;
+            });
+        }
 
         binding.editPreferencesSaveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +62,9 @@ public class EditPreferencesActivity extends AppCompatActivity {
                 newAge = Integer.parseInt(binding.editPreferencesAgeEditText.getText().toString());
                 newGender = binding.editPreferencesGenderEditText.toString();
 
-                //TODO: Modify UserPreferences after I finish writing the fetch and return to WelcomeUser.
+                repository.updateUserPreferences(newAge, newGender, userPreferences.getUserPreferencesId());
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
             }
         });
 
