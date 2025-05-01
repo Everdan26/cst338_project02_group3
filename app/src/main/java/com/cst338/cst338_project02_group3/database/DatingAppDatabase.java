@@ -87,6 +87,9 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                     Matches match = new Matches(1, 2, true);
                     matchesDAO.insert(match);
 
+                Matches match2 = new Matches(2, 1, true);
+                matchesDAO.insert(match2);
+
             });
 
         }

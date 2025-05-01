@@ -9,6 +9,8 @@ import androidx.room.Query;
 
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 
+import java.util.List;
+
 @Dao
 public interface UserInfoDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -20,9 +22,21 @@ public interface UserInfoDAO {
     @Query("DELETE FROM " + DatingAppDatabase.USERINFO_TABLE)
     void deleteAll();
 
-    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userId == :userId")
+    /**
+     * <h2>Retrieves a UserInfo record by userId</h2>
+     * @param userId ID of retrieved UserInfo record
+     * @return UserInfo record
+     */
+    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE userInfoId == :userId")
     LiveData<UserInfo> getUserInfoByUserId(int userId);
+
 
     @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE gender == :prefGender ORDER BY random() LIMIT 1")
     LiveData<UserInfo> getRandomUserInfo(String prefGender);
+
+    @Query("SELECT u.*  FROM userInfoTable u " +
+            "INNER JOIN matchesTable m ON u.userId = m.userId1 " +
+            "WHERE m.userId2 = :userId AND m.`like` =1" )
+    LiveData<List<UserInfo>> getUsersWhoLikedUser(int userId);
+
 }
