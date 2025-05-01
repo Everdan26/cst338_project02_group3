@@ -123,4 +123,11 @@ public class DatabaseTest {
         userDAO.deleteAll();
         assertTrue(userDAO.getAllRecordsTest().isEmpty());
     }
+
+    @Test
+    public void updatePasswordTest() {
+        userDAO.insert(user);
+        userDAO.updatePassword("testuser", "newPassword");
+        assertEquals("newPassword", userDAO.getUserByUsernameTest("testuser").getPassword());
+    }
 }

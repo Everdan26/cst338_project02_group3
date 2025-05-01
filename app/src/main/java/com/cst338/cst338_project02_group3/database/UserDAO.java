@@ -48,4 +48,7 @@ public interface UserDAO {
 
     @Query("DELETE FROM " + DatingAppDatabase.USER_TABLE + " WHERE username == :username")
     void deleteUserByUsername(String username);
+
+    @Query("UPDATE " + DatingAppDatabase.USER_TABLE + " SET password = :password WHERE username == :username")
+    void updatePassword(String username, String password);
 }
