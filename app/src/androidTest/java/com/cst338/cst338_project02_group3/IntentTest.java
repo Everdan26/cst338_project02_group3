@@ -16,7 +16,7 @@ public class IntentTest {
     //Intent keys. Keep adding them as you add intent tests.
     private static final String USER_PROFILE_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_PROFILE_ACTIVITY_USER_ID";
     private static final String WELCOME_ACTIVITY_USER_ID = "com.cst338.project02_group3.WELCOME_ACTIVITY_USER_ID";
-
+    private static final String MAIN_ACTIVITY_USER_ID = "com.cst338.project02_group3.MAIN_ACTIVITY_USER_ID";
     private static final String WELCOME_ADMIN_USER_ID = "com.cst338.project02_group3.WELCOME_ADMIN_USER_ID";
     private static final String MY_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_MATCHES_ACTIVITY_USER_ID";
 
@@ -45,6 +45,15 @@ public class IntentTest {
         intent.putExtra(WELCOME_ADMIN_USER_ID, TEST_VALUE);
 
         assertEquals(TEST_VALUE, intent.getIntExtra(WELCOME_ADMIN_USER_ID, -1));
+    }
+
+    @Test
+    public void MainActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, TEST_VALUE);
+
+        assertEquals(TEST_VALUE, intent.getIntExtra(MAIN_ACTIVITY_USER_ID, -1));
     }
 
     @Test
