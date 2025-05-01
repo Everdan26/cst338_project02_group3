@@ -87,4 +87,27 @@ public class DatabaseTest {
     }
 
 
+=======
+    @Test
+    public void deleteAllUsersTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+        userDAO.deleteAll();
+        assertTrue(userDAO.getAllRecordsTest().isEmpty());
+    }
+
+    @Test
+    public void updatePasswordTest() {
+        userDAO.insert(user);
+        userDAO.updatePassword("testuser", "newPassword");
+        assertEquals("newPassword", userDAO.getUserByUsernameTest("testuser").getPassword());
+    }
+
+    //Report Logs Test
+    @Test
+    public void insertReport() {
+        reportDAO.insert(report);
+        assertNotNull(reportDAO.getReportByUserId(report.getUserId()));
+    }
+
 }
