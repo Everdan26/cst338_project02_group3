@@ -30,4 +30,7 @@ public interface MatchesDAO {
     @Query("SELECT * FROM matchesTable WHERE userId2 = :userId AND `like` = 1")
     LiveData<List<Matches>> getUsersWhoLikedMe(int userId);
 
+    @Query("SELECT * FROM matchesTable WHERE userId1 = :userId1 AND userId2 = :userId2")
+    Matches getMatchByUserIds(int userId1, int userId2);
+
 }

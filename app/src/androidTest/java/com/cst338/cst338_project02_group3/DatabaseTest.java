@@ -20,6 +20,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
@@ -87,7 +88,6 @@ public class DatabaseTest {
     }
 
 
-=======
     @Test
     public void deleteAllUsersTest() {
         userDAO.insert(user);
@@ -108,6 +108,22 @@ public class DatabaseTest {
     public void insertReport() {
         reportDAO.insert(report);
         assertNotNull(reportDAO.getReportByUserId(report.getUserId()));
+    }
+
+    //Matches Entity Test
+    @Test
+    public void insertMatchTest(){
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+
+        Matches match = new Matches(user.getId(), matchUser.getId(), true);
+        matchesDAO.insert(match);
+
+        Matches retrievedMatch = matchesDAO.getMatchByUserIds(user.getId(), matchUser.getId());
+        assertNotNull(retrievedMatch);
+        assertEquals(user.getId(), retrievedMatch.getUserId1());
+        assertEquals(matchUser.getId(), retrievedMatch.getUserId2());
+        assertTrue(retrievedMatch.isLike());
     }
 
 }
