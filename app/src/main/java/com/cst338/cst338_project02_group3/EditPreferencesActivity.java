@@ -10,14 +10,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.LiveData;
 
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
+import com.cst338.cst338_project02_group3.database.entities.User;
+import com.cst338.cst338_project02_group3.database.entities.UserInfo;
+import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import com.cst338.cst338_project02_group3.databinding.ActivityEditPreferencesBinding;
 
 public class EditPreferencesActivity extends AppCompatActivity {
 
     private static final String EDIT_PREFERENCES_USER_ID = "com.cst338.project02_group3.EDIT_PREFERENCES_USER_ID";
     ActivityEditPreferencesBinding binding;
+
+    private int loggedInUserId;
+    private UserInfo userInfo;
+    private UserPreferences userPreferences;
+
+    private int newAge;
+    private String newGender;
 
     private DatingAppRepository repository;
 
@@ -30,19 +41,31 @@ public class EditPreferencesActivity extends AppCompatActivity {
 
         repository = DatingAppRepository.getRepository(getApplication());
 
-        //TODO: I think this activity just needs to save whatever's in the EditTexts when the user hits the save changes button.
+        loggedInUserId = getIntent().getIntExtra(EDIT_PREFERENCES_USER_ID, -1);
+        if (loggedInUserId != -1) {
+            LiveData<UserInfo> userInfoObserver = repository.getUserInfoByUserId(loggedInUserId);
+            userInfoObserver.observe(this, userInfo -> {
+                this.userInfo = userInfo;
+            });
+        }
+
+        //TODO: Get the UserPreferences file by UserInfoID. May have to write a new SQL call for this.
 
         binding.editPreferencesSaveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Hook this up (See above comment)
+                newAge = Integer.parseInt(binding.editPreferencesAgeEditText.getText().toString());
+                newGender = binding.editPreferencesGenderEditText.toString();
+
+                //TODO: Modify UserPreferences after I finish writing the fetch and return to WelcomeUser.
             }
         });
 
         binding.editPreferencesBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Hook this up (should go back to the last page without making changes)
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
             }
         });
 
