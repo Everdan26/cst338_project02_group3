@@ -60,5 +60,6 @@
     <string name="ageColon">Age:</string>
     <string name="genderColon">Gender:</string>
     <string name="gender">Gender</string>
+    <string name="edit_preferences">Edit Preferences</string>
 
 </resources>

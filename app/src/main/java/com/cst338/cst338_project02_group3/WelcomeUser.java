@@ -108,6 +108,14 @@ public class WelcomeUser extends AppCompatActivity {
             }
         });
 
+        binding.editPreferencesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = EditPreferencesActivity.editPreferencesIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
+            }
+        });
+
     }
 
     static Intent welcomeUserIntentFactory(Context context, int userId) {

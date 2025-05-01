@@ -1,5 +1,7 @@
 package com.cst338.cst338_project02_group3;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +16,7 @@ import com.cst338.cst338_project02_group3.databinding.ActivityEditPreferencesBin
 
 public class EditPreferencesActivity extends AppCompatActivity {
 
+    private static final String EDIT_PREFERENCES_USER_ID = "com.cst338.project02_group3.EDIT_PREFERENCES_USER_ID";
     ActivityEditPreferencesBinding binding;
 
     private DatingAppRepository repository;
@@ -43,5 +46,11 @@ public class EditPreferencesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    static Intent editPreferencesIntentFactory (Context context, int userId) {
+        Intent intent = new Intent(context, EditPreferencesActivity.class);
+        intent.putExtra(EDIT_PREFERENCES_USER_ID, userId);
+        return intent;
     }
 }
