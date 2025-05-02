@@ -75,8 +75,6 @@ public class EditPreferencesActivity extends AppCompatActivity {
 
 
     private void sendPreferences(int age, String gender) {
-        //TODO: see why this is throwing an error unhappy that it's working on the main thread.
-        //Need to make it asynchronous somehow.
         if (loggedInUserId != -1) {
             LiveData<UserPreferences> userPreferencesObserver = repository.getUserPreferencesByUserId(loggedInUserId);
             userPreferencesObserver.observe(this, userPreferencesId -> {
