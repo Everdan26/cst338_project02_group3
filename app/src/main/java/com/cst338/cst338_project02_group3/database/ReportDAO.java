@@ -1,5 +1,6 @@
 package com.cst338.cst338_project02_group3.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -40,6 +41,6 @@ public interface ReportDAO {
 
 
     @Query("SELECT userId FROM " + DatingAppDatabase.REPORT_TABLE + " WHERE isBan = 1")
-    List<Integer> getAllBannedUserIds();
+    LiveData<List<Integer>> getAllBannedUserIds();
 
 }

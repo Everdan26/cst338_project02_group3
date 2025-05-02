@@ -147,7 +147,7 @@ public class DatingAppRepository {
         );
     }
 
-    public List<Integer> getAllBannedUserIds() {
+    public LiveData<List<Integer>> getAllBannedUserIds() {
         return reportDAO.getAllBannedUserIds();
     }
 
