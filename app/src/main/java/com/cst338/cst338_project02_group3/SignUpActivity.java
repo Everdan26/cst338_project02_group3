@@ -68,13 +68,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if (password != null) {
                     user1 = new User(username, password);
                     repository.insertUser(user1);
+                    int newUserId = user1.getId();
                     Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-                    // TODO: LINK TO SETTING UP PROFILE (Set up UserInfo record)
-                    Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext());
+                    Intent intent = SetUpProfileActivity.setUpProfileIntentFactory(getApplicationContext(), newUserId);
                     startActivity(intent);
                 }
             }
-
         });
 
     }

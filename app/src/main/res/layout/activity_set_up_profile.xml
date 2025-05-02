@@ -111,7 +111,7 @@
     <EditText
         android:id="@+id/setBioEditText"
         android:layout_width="300dp"
-        android:layout_height="48dp"
+        android:layout_height="64dp"
         android:gravity="center"
         android:hint="@string/enter_a_brief_bio"
         android:importantForAutofill="no"
