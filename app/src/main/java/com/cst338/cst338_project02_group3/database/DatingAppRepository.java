@@ -121,4 +121,11 @@ public class DatingAppRepository {
         });
 
     }
+
+    public void insertReportUser(UserInfo otherUserInfo) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Report report = new Report(otherUserInfo.getUserId(),"Reported by user", false);
+            reportDAO.insert(report);
+        });
+    }
 }
