@@ -138,6 +138,33 @@ public class DatabaseTest {
 
     }
 
+    //Matches Entity Test
+    @Test
+    public void insertMatchTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+
+        Matches match = new Matches(user.getId(), matchUser.getId(), true);
+        matchesDAO.insert(match);
+
+        Matches retrievedMatch = matchesDAO.getMatchByUserIds(user.getId(), matchUser.getId());
+        assertNotNull(retrievedMatch);
+        assertEquals(user.getId(), retrievedMatch.getUserId1());
+        assertEquals(matchUser.getId(), retrievedMatch.getUserId2());
+        assertTrue(retrievedMatch.isLike());
+    }
+
+    //Delete all matches test
+    public void deleteAllMatchesTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+        Matches match = new Matches(user.getId(), matchUser.getId(), true);
+        matchesDAO.insert(match);
+
+        matchesDAO.deleteAll();
+        assertTrue(matchesDAO.getAllMatches().isEmpty());
+    }
+
     @Test
     public void deleteReport() {
         reportDAO.insert(report);
@@ -162,6 +189,5 @@ public class DatabaseTest {
         assertTrue(reportDAO.banStatus(report.getUserId()));
 
     }
-
 
 }

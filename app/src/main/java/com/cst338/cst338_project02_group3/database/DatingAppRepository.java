@@ -15,6 +15,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -99,7 +100,7 @@ public class DatingAppRepository {
         return userInfoDAO.getUserInfoByUserId(userId);
     }
 
-//get user who liked me
+    //get user who liked me
     public LiveData<List<UserInfo>> getUsersWhoLikedMe(int userId) {
         return userInfoDAO.getUsersWhoLikedUser(userId);
     }
@@ -107,6 +108,59 @@ public class DatingAppRepository {
     public LiveData<UserInfo> getRandomUserInfo(String prefGender) {
         return userInfoDAO.getRandomUserInfo(prefGender);
     }
+
+
+    public LiveData<UserPreferences> currUserPreference(int loggedInUserId) {
+        return userPreferencesDAO.getCurrUserPreference(loggedInUserId);
+    }
+
+    // Updating userInfo
+    public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
+        CompletableFuture.runAsync(() -> {
+            userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
+        });
+
+    }
+
+    public void insertReportUser(UserInfo otherUserInfo) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Report report = new Report(otherUserInfo.getUserId(),"Reported by user", false);
+            reportDAO.insert(report);
+        });
+    }
+
+    public void saveMatch(int user1Id, int user2Id, boolean like) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Matches match = new Matches(user1Id, user2Id, like);
+            matchesDAO.insert(match);
+        });
+    }
+
+    public LiveData<List<UserInfo>> getUnmatchedUsers(int currentUserId) {
+        return userInfoDAO.getUnmatchedUsers(currentUserId);
+    }
+
+    //admin ban
+    public void banUser(int userId) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() ->
+                reportDAO.updateBanStatus(true, userId)
+        );
+    }
+
+    public LiveData<List<Integer>> getAllBannedUserIds() {
+        return reportDAO.getAllBannedUserIds();
+    }
+
+    public void unbanUser(int userId) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Report existing = reportDAO.getReportByUserId(userId);
+            if (existing != null) {
+                reportDAO.updateBanStatus(false, userId);
+            }
+        });
+    }
+
+
 
     public LiveData<UserPreferences> getUserPreferencesByUserId(int userId) {
         return userPreferencesDAO.getUserPreferencesByUserId(userId);

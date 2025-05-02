@@ -26,7 +26,7 @@ public class Report {
     @NonNull
     @Override
     public String toString() {
-        return  "Report Id: " + reportId + '\n' + "userId: " + userId + '\n' + "Reason = " + reason + '\n' + "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
+        return  "Report Id: " + reportId + '\n' + "userId: " + userId + '\n' + "Reason = " + reason + '\n' + "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n";
     }
 
 

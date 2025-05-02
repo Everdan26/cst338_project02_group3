@@ -20,6 +20,7 @@ import androidx.lifecycle.LiveData;
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
 import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
+import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import com.cst338.cst338_project02_group3.databinding.ActivityWelcomeUserBinding;
 
 public class WelcomeUser extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class WelcomeUser extends AppCompatActivity {
     private DatingAppRepository repository;
     private int loggedInUserId;
     private User user;
-    private UserInfo userInfo;
+    private UserPreferences currUserPreference;
 
 
     @Override
@@ -60,8 +61,10 @@ public class WelcomeUser extends AppCompatActivity {
                     } else {
                         binding.adminButtonUser.setVisibility(View.INVISIBLE);
                     }
+
                 }
             });
+            getCurrUserPreference();
         }
 
         //Logout Button
@@ -87,7 +90,7 @@ public class WelcomeUser extends AppCompatActivity {
         binding.findMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext(),"M");
+                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext(),currUserPreference.getGender(),loggedInUserId);
                 startActivity(intent);
             }
         });
@@ -158,6 +161,16 @@ public class WelcomeUser extends AppCompatActivity {
         startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext()));
     }
 
+    private void getCurrUserPreference() {
+        LiveData<UserPreferences> currUserPref = repository.currUserPreference(loggedInUserId);
 
+        currUserPref.observe(this,preference -> {
+            if(preference != null) {
+                this.currUserPreference = preference;
+            } else {
+                this.currUserPreference = null;
+            }
+        });
+    }
 
 }

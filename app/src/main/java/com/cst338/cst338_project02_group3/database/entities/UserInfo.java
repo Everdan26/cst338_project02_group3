@@ -12,7 +12,6 @@ public class UserInfo {
     @PrimaryKey(autoGenerate = true)
     private int userInfoId;
     private int userId;
-
     private String name;
     private int age;
     private String gender;

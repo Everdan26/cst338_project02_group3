@@ -17,6 +17,9 @@ public interface UserPreferencesDAO {
     @Delete
     void delete(UserPreferences userPreference);
 
+    @Query("SELECT * FROM " + DatingAppDatabase.PREFERENCES_TABLE + " WHERE userInfoId = :userId")
+    LiveData<UserPreferences> getCurrUserPreference(int userId);
+
     @Query("SELECT * FROM " + DatingAppDatabase.PREFERENCES_TABLE
                 + " INNER JOIN " + DatingAppDatabase.USERINFO_TABLE
                 + " ON " + DatingAppDatabase.PREFERENCES_TABLE + ".userInfoId=" + DatingAppDatabase.USERINFO_TABLE + ".userInfoId"
