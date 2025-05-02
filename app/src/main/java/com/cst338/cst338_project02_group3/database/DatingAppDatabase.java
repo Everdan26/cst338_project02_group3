@@ -77,13 +77,16 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 User testUser4 = new User("testuser4", "testuser4");
                 userDAO.insert(testUser4);
 
+                User monteMascot = new User("monte", "monte");
+                userDAO.insert(monteMascot);
+
                 //Report User test
                 ReportDAO repDAO = INSTANCE.reportDAO();
                 repDAO.insert(new Report(testUser1.getId(),"Inappropriate Picture",testUser1.isBan()));
 
 
                 //User Info
-                UserInfo monte = new UserInfo(2, "Monte", 21, "M",
+                UserInfo monte = new UserInfo(6, "Monte", 21, "M",
                         "Your favorite otter mascot.",
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
                 userInfoDAO.insert(monte);
@@ -108,6 +111,20 @@ public abstract class DatingAppDatabase extends RoomDatabase {
 
 //                    Matches match3 = new Matches(3, 1, true);
 //                    matchesDAO.insert(match3);
+
+
+                //UserPreference test
+                UserPreferencesDAO userPreferencesDAO = INSTANCE.userPreferencesDAO();
+                UserPreferences testOne = new UserPreferences(2,18,"M");
+                UserPreferences testTwo = new UserPreferences(3,18,"M");
+                UserPreferences adminTwo = new UserPreferences(1,18,"M");
+
+
+                userPreferencesDAO.insert(testOne);
+                userPreferencesDAO.insert(testTwo);
+
+
+
 
             });
 

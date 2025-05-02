@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -32,8 +33,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(binding.getRoot());
         repository = DatingAppRepository.getRepository(getApplication());
 
         // Getting id and userInfo of current user
@@ -42,23 +42,27 @@ public class EditProfileActivity extends AppCompatActivity {
             LiveData<UserInfo> userObserver = repository.getUserInfoByUserId(loggedInUserId);
             userObserver.observe(this, userInfo -> {
                 this.userInfo = userInfo;
+                if (this.userInfo != null) {
+                    // ===== DISPLAYING CURRENT INFO OF USER =====
+                    String currentName = getString(R.string.currentNameString, userInfo.getName());
+                    String currentAge = getString(R.string.currentAgeString, userInfo.getAge());
+                    String currentGender = getString(R.string.currentGenderString, userInfo.getGender());
+                    String currentBio = getString(R.string.currentBioString, userInfo.getBio());
+                    String currentPfp = getString(R.string.currentPfpString, userInfo.getPhoto());
+
+                    binding.currentNameTextView.setText(currentName);
+                    binding.currentAgeTextView.setText(currentAge);
+                    binding.currentGenderTextView.setText(currentGender);
+                    binding.currentBioTextView.setText(currentBio);
+                    binding.currentPfpTextView.setText(currentPfp);
+                }
             });
         }
 
-        // =============== DISPLAYING CURRENT INFO OF USER ===============
         // Makes currentBioTextView vertically scrollable (for yappers lol)
         binding.currentBioTextView.setMovementMethod(new ScrollingMovementMethod());
         // Makes currentPfpTextView vertically scrollable
         binding.currentPfpTextView.setMovementMethod(new ScrollingMovementMethod());
-
-        binding.currentAgeTextView.setText(userInfo.getAge());
-        binding.currentGenderTextView.setText(userInfo.getGender());
-        binding.currentBioTextView.setText(userInfo.getBio());
-        binding.currentPfpTextView.setText(userInfo.getPhoto());
-
-        // TODO: Add "name" field to UserInfo (will require edits to relevant files)
-        // TODO: Add default values to database for testing
-        // TODO: ^^^ Test to see if this activity works to change default values
 
         // Wiring button to respective function
         binding.editProfileSaveChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -68,14 +72,6 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        //back button
-//        binding.editProfileBackButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void confirmationDialog() {
@@ -87,8 +83,9 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 editProfile();
-                // Reloading page
-                Intent intent = EditProfileActivity.editProfileIntentFactory(getApplicationContext(), loggedInUserId);
+                Toast.makeText(getApplicationContext(), "Your changes were successfully saved!", Toast.LENGTH_SHORT).show();
+                // Redirecting to welcome page
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });
@@ -98,16 +95,18 @@ public class EditProfileActivity extends AppCompatActivity {
                 alertDialog.dismiss();
             }
         });
+        alertBuilder.create().show();
     }
     private void editProfile() {
+        String nameInput = binding.editNameEditText.getText().toString();
         String ageInput = binding.editAgeEditText.getText().toString();
         String genderInput = binding.editGenderEditText.getText().toString();
         String bioInput = binding.editBioEditText.getText().toString();
         String pfpInput = binding.editPfpEditText.getText().toString();
 
-        // NOTE: I'm gonna try to edit the data using the setters in UserInfo.java
-        //       instead of using SQL queries. We'll see if this works...
-
+        if (!nameInput.isEmpty()) {
+            userInfo.setName(nameInput);
+        }
         if (!ageInput.isEmpty()) {
             userInfo.setAge(parseInt(ageInput));
         }
@@ -120,6 +119,9 @@ public class EditProfileActivity extends AppCompatActivity {
         if (!pfpInput.isEmpty()) {
             userInfo.setPhoto(pfpInput);
         }
+
+        repository.updateUserInfo(userInfo.getName(), userInfo.getAge(), userInfo.getGender(),
+                userInfo.getBio(), userInfo.getPhoto(), userInfo.getUserId());
     }
 
     static Intent editProfileIntentFactory(Context context, int userId) {
