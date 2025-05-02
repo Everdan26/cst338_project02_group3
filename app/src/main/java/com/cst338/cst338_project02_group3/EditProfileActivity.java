@@ -72,6 +72,15 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        //Button to send user to view their own profile
+        binding.editProfileViewProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = UserProfileActivity.userProfileIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void confirmationDialog() {
