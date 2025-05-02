@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/banLogsDisplay"
         android:layout_width="390dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginTop="16dip"
         android:textColor="@color/black"
         android:padding="8dp"
@@ -36,6 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banTitle" />
+
 
     <TextView
         android:id="@+id/banUserText"

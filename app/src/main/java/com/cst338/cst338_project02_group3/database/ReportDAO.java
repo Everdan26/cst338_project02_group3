@@ -39,4 +39,7 @@ public interface ReportDAO {
     boolean banStatus(int userId);
 
 
+    @Query("SELECT userId FROM " + DatingAppDatabase.REPORT_TABLE + " WHERE isBan = 1")
+    List<Integer> getAllBannedUserIds();
+
 }

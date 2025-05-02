@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Toast;
+import java.util.List;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
 import com.cst338.cst338_project02_group3.databinding.ActivityAdminBanBinding;
@@ -51,6 +48,20 @@ public class AdminBanActivity extends AppCompatActivity {
                     Toast.makeText(this, "Invalid user ID", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+
+        binding.updateBanLogBtn.setOnClickListener(v -> {
+                    List<Integer> bannedUserIds = repository.getAllBannedUserIds();
+                    if (bannedUserIds.isEmpty()) {
+                        binding.banLogsDisplay.setText(getString(R.string.banned_users_text) + " None");
+                    } else {
+                        StringBuilder sb = new StringBuilder();
+                        for (int id : bannedUserIds) {
+                            sb.append(id).append(", ");
+                        }
+                        sb.setLength(sb.length() - 2);
+                        binding.banLogsDisplay.setText(getString(R.string.banned_users_text) + " " + sb.toString());
+                    }
         });
 
         //bannedUsers();

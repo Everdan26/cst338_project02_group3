@@ -140,5 +140,17 @@ public class DatingAppRepository {
         return userInfoDAO.getUnmatchedUsers(currentUserId);
     }
 
+    //admin ban
+    public void banUser(int userId) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() ->
+                reportDAO.updateBanStatus(true, userId)
+        );
+    }
+
+    public List<Integer> getAllBannedUserIds() {
+        return reportDAO.getAllBannedUserIds();
+    }
+
+
 
 }
