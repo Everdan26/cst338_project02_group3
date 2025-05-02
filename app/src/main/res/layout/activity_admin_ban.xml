@@ -63,49 +63,38 @@
     <Button
         android:id="@+id/banUserSubmitButton"
         android:backgroundTint="#D43B66"
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="105dp"
         android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/ban_user_submit_button_text"
         android:textSize="32sp"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserIdToBan"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/unbanUserSubmitButton"
         android:backgroundTint="#009688"
-        android:layout_width="180dp"
-        android:layout_height="105dp"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/unban_button"
-        android:textSize="32sp"
-        app:layout_constraintStart_toEndOf="@id/banUserSubmitButton"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUserIdToBan"
-        tools:layout_editor_absoluteX="215dp" />
-
-    <Button
-        android:id="@+id/updateBanLogBtn"
         android:layout_width="match_parent"
         android:layout_height="105dp"
         android:layout_margin="16dp"
-        android:backgroundTint="#D43BB2"
-        android:text="@string/update_log"
+        android:text="@string/unban_button"
         android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/banUserSubmitButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banUserSubmitButton" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/mainMenuAdmin"
+
         android:layout_width="match_parent"
         android:layout_height="105dp"
         android:layout_margin="16dp"
         android:text="@string/main_menu"
         android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/unbanUserSubmitButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/updateBanLogBtn" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
