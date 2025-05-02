@@ -51,4 +51,9 @@ public interface UserInfoDAO {
             "WHERE m.userId2 = :userId AND m.`like` =1" )
     LiveData<List<UserInfo>> getUsersWhoLikedUser(int userId);
 
+
+    //prevent already matched users from showing on find matches
+    @Query("SELECT * FROM userInfoTable WHERE userId != :currentUserId AND userId NOT IN (SELECT userId2 FROM matchesTable WHERE userId1 = :currentUserId)")
+    LiveData<List<UserInfo>> getUnmatchedUsers(int currentUserId);
+
 }

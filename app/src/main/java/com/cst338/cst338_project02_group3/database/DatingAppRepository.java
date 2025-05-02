@@ -128,4 +128,17 @@ public class DatingAppRepository {
             reportDAO.insert(report);
         });
     }
+
+    public void saveMatch(int user1Id, int user2Id, boolean like) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Matches match = new Matches(user1Id, user2Id, like);
+            matchesDAO.insert(match);
+        });
+    }
+
+    public LiveData<List<UserInfo>> getUnmatchedUsers(int currentUserId) {
+        return userInfoDAO.getUnmatchedUsers(currentUserId);
+    }
+
+
 }
