@@ -9,7 +9,6 @@ import androidx.room.Query;
 
 import com.cst338.cst338_project02_group3.database.entities.Report;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao

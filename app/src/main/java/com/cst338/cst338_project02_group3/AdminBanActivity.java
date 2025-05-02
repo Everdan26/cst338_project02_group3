@@ -62,9 +62,6 @@ public class AdminBanActivity extends AppCompatActivity {
             }
         });
 
-
-        //bannedUsers();
-
         //main menu
         binding.mainMenuAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
