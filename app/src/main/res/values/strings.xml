@@ -67,6 +67,7 @@
     <string name="ageColon">Age:</string>
     <string name="genderColon">Gender:</string>
     <string name="gender">Gender</string>
+    <string name="edit_preferences">Edit Preferences</string>
     <string name="ban_users">Ban Users</string>
     <string name="ban_users_title">Ban Users</string>
     <string name="banned_users_text">Banned users:</string>

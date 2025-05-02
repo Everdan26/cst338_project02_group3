@@ -162,4 +162,12 @@ public class DatingAppRepository {
 
 
 
+    public LiveData<UserPreferences> getUserPreferencesByUserId(int userId) {
+        return userPreferencesDAO.getUserPreferencesByUserId(userId);
+    }
+
+    public void updateUserPreferences(int age, String gender, int userPreferencesId) {
+        userPreferencesDAO.updateUserPreferences(age, gender, userPreferencesId);
+    }
+
 }
