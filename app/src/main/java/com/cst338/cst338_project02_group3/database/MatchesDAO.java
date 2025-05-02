@@ -25,9 +25,12 @@ public interface MatchesDAO {
     void delete(Matches match);
 
     @Query("SELECT * FROM " + DatingAppDatabase.MATCHES_TABLE)
-    List<Matches> getAllRecords();
+    List<Matches> getAllMatches();
 
-    @Query("SELECT * FROM matchesTable WHERE userId2 = :userId AND `like` = 1")
-    LiveData<List<Matches>> getUsersWhoLikedMe(int userId);
+    @Query("DELETE FROM matchesTable")
+    void deleteAll();
+
+    @Query("SELECT * FROM matchesTable WHERE userId1 = :userId1 AND userId2 = :userId2")
+    Matches getMatchByUserIds(int userId1, int userId2);
 
 }
