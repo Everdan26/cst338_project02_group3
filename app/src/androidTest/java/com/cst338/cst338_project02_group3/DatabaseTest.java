@@ -135,6 +135,23 @@ public class DatabaseTest {
     }
 
 
+    //User Preferences Test (insert)
+    @Test
+    public void preferenceTest() {
+        userPreferences = new UserPreferences(userInfoId, 21, "F");
+        userPreferencesDAO.insert(userPreferences);
+        assertNotNull(userPreferences);
+    }
+
+    //User Preferences Test (delete)
+    @Test
+    public void preferenceDeleteTest() {
+        userPreferences = new UserPreferences(userInfoId, 21, "F");
+        userPreferencesDAO.delete(userPreferences);
+        UserPreferences getPref = userPreferencesDAO.getUserPreferencesByUserId(userId).getValue();
+        assertNull(getPref);
+    }
+
     //Insert UserInfo test
     @Test
     public void insertUserInfoTest(){
