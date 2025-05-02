@@ -35,6 +35,7 @@ public class AdminBanActivity extends AppCompatActivity {
 
         binding.banLogsDisplay.setMovementMethod(new ScrollingMovementMethod());
 
+        //ban button
         binding.banUserSubmitButton.setOnClickListener(v -> {
             String input = binding.editTextUserIdToBan.getText().toString().trim();
             if (!input.isEmpty()) {
@@ -48,6 +49,22 @@ public class AdminBanActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //unban button
+        binding.unbanUserSubmitButton.setOnClickListener(v -> {
+            String input = binding.editTextUserIdToBan.getText().toString().trim();
+            if (!input.isEmpty()) {
+                try {
+                    int userId = Integer.parseInt(input);
+                    repository.unbanUser(userId);
+                    Toast.makeText(this, "User " + userId + " unbanned.", Toast.LENGTH_SHORT).show();
+                    binding.editTextUserIdToBan.setText("");
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Invalid user ID", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         repository.getAllBannedUserIds().observe(this, bannedUserIds -> {
             if (bannedUserIds == null || bannedUserIds.isEmpty()) {
