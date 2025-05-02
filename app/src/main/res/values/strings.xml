@@ -59,7 +59,7 @@
     <string name="currentGenderString">%1$s</string>
     <string name="currentBioString">%1$s</string>
     <string name="currentPfpString">%1$s</string>
-    <string name="yes">Yes</string>
+    <string name="yes">Like</string>
     <string name="no">No</string>
     <string name="report">Report</string>
     <string name="edit_your_preferences">Edit your Preferences</string>
