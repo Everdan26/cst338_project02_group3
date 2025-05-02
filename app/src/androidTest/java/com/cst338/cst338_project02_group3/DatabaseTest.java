@@ -2,12 +2,14 @@ package com.cst338.cst338_project02_group3;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -28,6 +30,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
@@ -128,6 +132,30 @@ public class DatabaseTest {
         userDAO.insert(user);
         userDAO.updatePassword("testuser", "newPassword");
         assertEquals("newPassword", userDAO.getUserByUsernameTest("testuser").getPassword());
+    }
+
+
+    //Insert UserInfo test
+    @Test
+    public void insertUserInfoTest(){
+        userInfoDAO.insert(userInfo);
+        assertNotNull(userInfo);
+        assertEquals("Monte", userInfo.getName());
+        assertEquals(21, userInfo.getAge());
+    }
+
+    //Delete UserInfo test
+    @Test
+    public void deleteUserInfoTest() {
+        UserInfo u1 = new UserInfo(3, "Bob", 22, "M", "lol", "");
+        UserInfo u2 = new UserInfo(4, "Bobby", 28, "M", "haha", "");
+        userInfoDAO.insert(u1,u2);
+
+        userInfoDAO.deleteAll();
+        UserInfo getU1 = userInfoDAO.getUserInfoByUserId(3).getValue();
+        assertNull(getU1);
+        UserInfo getU2 = userInfoDAO.getUserInfoByUserId(4).getValue();
+        assertNull(getU2);
     }
 
     //Report Logs Test
