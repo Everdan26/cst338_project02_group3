@@ -81,6 +81,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/unban_button"
         android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@id/banUserSubmitButton"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserIdToBan"
         tools:layout_editor_absoluteX="215dp" />
 
