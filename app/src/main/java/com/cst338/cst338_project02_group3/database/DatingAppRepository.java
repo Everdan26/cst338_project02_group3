@@ -108,6 +108,13 @@ public class DatingAppRepository {
         return userInfoDAO.getRandomUserInfo(prefGender);
     }
 
+    // Adding userInfo record
+    public void insertUserInfo(UserInfo... userInfo) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            userInfoDAO.insert(userInfo);
+        });
+    }
+
     // Updating userInfo
     public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
         CompletableFuture.runAsync(() -> {
