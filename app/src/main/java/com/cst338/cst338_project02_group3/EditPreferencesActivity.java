@@ -54,7 +54,7 @@ public class EditPreferencesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int age = Integer.parseInt(binding.editPreferencesAgeEditText.getText().toString());
-                String gender = binding.editPreferencesGenderEditText.toString();
+                String gender = binding.editPreferencesGenderEditText.getText().toString();
 
                 sendPreferences(age, gender);
 
