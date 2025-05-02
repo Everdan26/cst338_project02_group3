@@ -67,5 +67,11 @@
     <string name="ageColon">Age:</string>
     <string name="genderColon">Gender:</string>
     <string name="gender">Gender</string>
+    <string name="ban_users">Ban Users</string>
+    <string name="ban_users_title">Ban Users</string>
+    <string name="banned_users_text">Banned users:</string>
+    <string name="ban_user_submit_button_text">Ban User</string>
+    <string name="ban_edit_text">Type in the ID number of the user you want to ban:</string>
+    <string name="enter_user_id_ban_hint">Enter User Id</string>
 
 </resources>
