@@ -19,7 +19,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 13, exportSchema = false)
+@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 3, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
     public static final String USER_TABLE = "userTable";
@@ -112,6 +112,16 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                         "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F16%2Fb6%2Fdf%2F16b6df52a0d8f83a8fd717587dde86eb.jpg&f=1&nofb=1&ipt=60120f3d6c380f67c36e7a44ada1a1f6eabfcc42153c592306fac928be991966");
                 userInfoDAO.insert(testUserNumberThree);
 
+                UserInfo boy = new UserInfo(98, "Guy", 22, "M",
+                        "Your favorite dude.",
+                        "https://media.istockphoto.com/id/175440771/photo/handsome-young-man-gesturing-thumbs-up-isolated.jpg?s=612x612&w=0&k=20&c=RMLEXPrDjwFg7uPb_Ri3KqpYF0BAEPjzloAB81viyCk=");
+                userInfoDAO.insert(boy);
+
+                UserInfo girl = new UserInfo(99, "Gal", 20, "F",
+                        "Your favorite girl.",
+                        "https://media.istockphoto.com/id/1303507261/photo/portrait-of-a-smiling-asian-businesswoman.jpg?s=612x612&w=0&k=20&c=xSvTs8GIXle4fKcZpAdH-Mn8o0wu-N_5hMVlrT-bsC0=");
+                userInfoDAO.insert(girl);
+
                 //Test for user matches
                     MatchesDAO matchesDAO = INSTANCE.matchesDAO();
                     Matches match = new Matches(2, 6, true);
@@ -120,8 +130,8 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                     Matches match2 = new Matches(6, 2, true);
                     matchesDAO.insert(match2);
 
-//                    Matches match3 = new Matches(3, 1, true);
-//                    matchesDAO.insert(match3);
+                    Matches match3 = new Matches(98, 1, true);
+                    matchesDAO.insert(match3);
 
 
                 //UserPreference test
@@ -134,9 +144,6 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 userPreferencesDAO.insert(testOne);
                 userPreferencesDAO.insert(testTwo);
                 userPreferencesDAO.insert(adminTwo);
-
-
-
 
             });
 
