@@ -50,10 +50,19 @@ public class WelcomeAdmin extends AppCompatActivity {
         }
 
         //Logout Button
-        binding.logOutButtonAdmin.setOnClickListener(new View.OnClickListener() {
+//        binding.logOutButtonAdmin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showLogoutDialog();
+//            }
+//        });
+
+        //main menu button
+        binding.mainMenuAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLogoutDialog();
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
             }
         });
 

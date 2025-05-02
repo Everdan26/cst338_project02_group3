@@ -151,6 +151,15 @@ public class DatingAppRepository {
         return reportDAO.getAllBannedUserIds();
     }
 
+    public void unbanUser(int userId) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Report existing = reportDAO.getReportByUserId(userId);
+            if (existing != null) {
+                reportDAO.updateBanStatus(false, userId);
+            }
+        });
+    }
+
 
 
 }
