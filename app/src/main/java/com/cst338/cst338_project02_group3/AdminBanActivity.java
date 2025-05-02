@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,20 @@ public class AdminBanActivity extends AppCompatActivity {
         repository = DatingAppRepository.getRepository(getApplication());
 
         binding.banLogsDisplay.setMovementMethod(new ScrollingMovementMethod());
+
+        binding.banUserSubmitButton.setOnClickListener(v -> {
+            String input = binding.editTextUserIdToBan.getText().toString().trim();
+            if(!input.isEmpty()) {
+                try {
+                    int userId = Integer.parseInt(input);
+                    repository.banUser(userId);
+                    Toast.makeText(this, "User " + userId + " banned.", Toast.LENGTH_SHORT).show();
+                    binding.editTextUserIdToBan.setText(""); // clear input
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Invalid user ID", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //bannedUsers();
 
