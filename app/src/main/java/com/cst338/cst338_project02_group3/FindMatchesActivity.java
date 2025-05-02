@@ -15,6 +15,9 @@ import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.databinding.ActivityFindMatchesBinding;
 import com.bumptech.glide.Glide;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class FindMatchesActivity extends AppCompatActivity {
@@ -27,6 +30,9 @@ public class FindMatchesActivity extends AppCompatActivity {
     private User user;
     private int loggedInUserId;
     private UserInfo randomUserInfo;
+    private List<UserInfo> potentialMatches = new ArrayList<>();
+    private int currentIndex = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,20 @@ public class FindMatchesActivity extends AppCompatActivity {
 
         }
 
+        repository.getUnmatchedUsers(loggedInUserId).observe(this, users -> {
+            if (users != null && !users.isEmpty()) {
+                potentialMatches.clear();
+                potentialMatches.addAll(users);
+                currentIndex = 0;
+                setRandomUserInfo();
+            } else {
+                binding.FindMatchesResultTextViewName.setText("No matches yet.");
+                binding.FindMatchesResultUserInfoTextViewAge.setText("");
+                binding.FindMatchesResultUserInfoTextViewBio.setText("");
+                binding.FindMatchesResultUserInfoImg.setImageDrawable(null);
+            }
+        });
+
         //Like button or Yes button
         binding.FindMatchesResultInfoBtnYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +70,13 @@ public class FindMatchesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Like button function
+        binding.FindMatchesResultInfoBtnYes.setOnClickListener(v -> {
+            UserInfo targetUser = potentialMatches.get(currentIndex);
+            repository.saveMatch(loggedInUserId, targetUser.getUserId(), true);
+        });
+
 
         //Report Button
         binding.FindMatchesResultInfoBtnReport.setOnClickListener(new View.OnClickListener() {
@@ -79,20 +106,21 @@ public class FindMatchesActivity extends AppCompatActivity {
     }
 
     private void setRandomUserInfo() {
-        LiveData<UserInfo> randomUserInfoObserver = repository.getRandomUserInfo(getIntent().getStringExtra(PREFERRED_GENDER));
+        if (potentialMatches.isEmpty()) return;
 
-        randomUserInfoObserver.observe(this, randomUser -> {
-            this.randomUserInfo = randomUser;
+        Random random = new Random();
+        int index = random.nextInt(potentialMatches.size());
+        randomUserInfo = potentialMatches.get(index);
 
-            if (this.randomUserInfo != null) {
-                binding.FindMatchesResultTextViewName.setText(randomUserInfo.getName());
-                binding.FindMatchesResultUserInfoTextViewAge.setText(Integer.toString(randomUserInfo.getAge()));
-                binding.FindMatchesResultUserInfoTextViewBio.setText(randomUserInfo.getBio());
-                Glide.with(binding.FindMatchesResultUserInfoImg).load(randomUserInfo.getPhoto()).into(binding.FindMatchesResultUserInfoImg);
-            }
-        });
+        binding.FindMatchesResultTextViewName.setText(randomUserInfo.getName());
+        binding.FindMatchesResultUserInfoTextViewAge.setText(Integer.toString(randomUserInfo.getAge()));
+        binding.FindMatchesResultUserInfoTextViewBio.setText(randomUserInfo.getBio());
+        Glide.with(binding.FindMatchesResultUserInfoImg)
+                .load(randomUserInfo.getPhoto())
+                .into(binding.FindMatchesResultUserInfoImg);
 
     }
+
 
 
 }

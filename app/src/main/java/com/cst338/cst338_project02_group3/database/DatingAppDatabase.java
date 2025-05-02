@@ -19,7 +19,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 13, exportSchema = false)
+@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 3, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
     public static final String USER_TABLE = "userTable";
@@ -91,15 +91,15 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
                 userInfoDAO.insert(monte);
 
-//                UserInfo boy = new UserInfo(3, "Guy", 22, "M",
-//                        "Your favorite dude.",
-//                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
-//                userInfoDAO.insert(boy);
-//
-//                UserInfo girl = new UserInfo(4, "Gal", 20, "F",
-//                        "Your favorite girl.",
-//                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
-//                userInfoDAO.insert(girl);
+                UserInfo boy = new UserInfo(98, "Guy", 22, "M",
+                        "Your favorite dude.",
+                        "https://media.istockphoto.com/id/175440771/photo/handsome-young-man-gesturing-thumbs-up-isolated.jpg?s=612x612&w=0&k=20&c=RMLEXPrDjwFg7uPb_Ri3KqpYF0BAEPjzloAB81viyCk=");
+                userInfoDAO.insert(boy);
+
+                UserInfo girl = new UserInfo(99, "Gal", 20, "F",
+                        "Your favorite girl.",
+                        "https://media.istockphoto.com/id/1303507261/photo/portrait-of-a-smiling-asian-businesswoman.jpg?s=612x612&w=0&k=20&c=xSvTs8GIXle4fKcZpAdH-Mn8o0wu-N_5hMVlrT-bsC0=");
+                userInfoDAO.insert(girl);
 
                 //Test for user matches
                     MatchesDAO matchesDAO = INSTANCE.matchesDAO();
@@ -109,8 +109,8 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                     Matches match2 = new Matches(2, 1, true);
                     matchesDAO.insert(match2);
 
-//                    Matches match3 = new Matches(3, 1, true);
-//                    matchesDAO.insert(match3);
+                    Matches match3 = new Matches(98, 1, true);
+                    matchesDAO.insert(match3);
 
 
                 //UserPreference test
@@ -122,9 +122,7 @@ public abstract class DatingAppDatabase extends RoomDatabase {
 
                 userPreferencesDAO.insert(testOne);
                 userPreferencesDAO.insert(testTwo);
-
-
-
+                userPreferencesDAO.insert(adminTwo);
 
             });
 
