@@ -37,14 +37,25 @@ public class FindMatchesActivity extends AppCompatActivity {
         if(loggedInUserId != -1) {
             setRandomUserInfo();
 
-
-
         }
 
+        //Like button or Yes button
+        binding.FindMatchesResultUserInfoBtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
+                startActivity(intent);
+            }
+        });
 
-
-
-
+        //back button
+        binding.FindMatchesResultUserInfoBtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
+                startActivity(intent);
+            }
+        });
 
         //back button
         binding.FindMatchesResultUserInfoBtnBack.setOnClickListener(new View.OnClickListener() {
