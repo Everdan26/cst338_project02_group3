@@ -80,6 +80,12 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 User monteMascot = new User("monte", "monte");
                 userDAO.insert(monteMascot);
 
+                User boyTest = new User("boy", "boy");
+                userDAO.insert(boyTest);
+
+                User girlTest = new User("girl", "girl");
+                userDAO.insert(girlTest);
+
                 //Report User test
                 ReportDAO repDAO = INSTANCE.reportDAO();
                 repDAO.insert(new Report(testUser1.getId(),"Inappropriate Picture",testUser1.isBan()));
@@ -91,22 +97,27 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                         "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
                 userInfoDAO.insert(monte);
 
-//                UserInfo boy = new UserInfo(3, "Guy", 22, "M",
-//                        "Your favorite dude.",
-//                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
-//                userInfoDAO.insert(boy);
-//
-//                UserInfo girl = new UserInfo(4, "Gal", 20, "F",
-//                        "Your favorite girl.",
-//                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
-//                userInfoDAO.insert(girl);
+                UserInfo boy = new UserInfo(7, "Guy", 22, "M",
+                        "Your favorite dude.",
+                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
+                userInfoDAO.insert(boy);
+
+                UserInfo girl = new UserInfo(8, "Gal", 20, "F",
+                        "Your favorite girl.",
+                        "https://csumb.edu/media/csumb/section-editors/student-life/traditions/Otter-Thursday-Square.jpg");
+                userInfoDAO.insert(girl);
+
+                UserInfo testUserNumberThree = new UserInfo(3,"testuser3", 23, "F",
+                        "Slaaaaay Queen",
+                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F16%2Fb6%2Fdf%2F16b6df52a0d8f83a8fd717587dde86eb.jpg&f=1&nofb=1&ipt=60120f3d6c380f67c36e7a44ada1a1f6eabfcc42153c592306fac928be991966");
+                userInfoDAO.insert(testUserNumberThree);
 
                 //Test for user matches
                     MatchesDAO matchesDAO = INSTANCE.matchesDAO();
-                    Matches match = new Matches(1, 2, true);
+                    Matches match = new Matches(2, 6, true);
                     matchesDAO.insert(match);
 
-                    Matches match2 = new Matches(2, 1, true);
+                    Matches match2 = new Matches(6, 2, true);
                     matchesDAO.insert(match2);
 
 //                    Matches match3 = new Matches(3, 1, true);
@@ -116,12 +127,13 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 //UserPreference test
                 UserPreferencesDAO userPreferencesDAO = INSTANCE.userPreferencesDAO();
                 UserPreferences testOne = new UserPreferences(2,18,"M");
-                UserPreferences testTwo = new UserPreferences(3,18,"M");
+                UserPreferences testTwo = new UserPreferences(3,18,"F");
                 UserPreferences adminTwo = new UserPreferences(1,18,"M");
 
 
                 userPreferencesDAO.insert(testOne);
                 userPreferencesDAO.insert(testTwo);
+                userPreferencesDAO.insert(adminTwo);
 
 
 
