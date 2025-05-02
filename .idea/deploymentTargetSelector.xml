@@ -4,7 +4,11 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
+
+        <DropdownSelection timestamp="2025-05-01T22:29:32.605644300Z">
+
         <DropdownSelection timestamp="2025-05-01T00:25:30.385738500Z">
+
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\neilc\.android\avd\Small_Phone_API_34.avd" />
@@ -30,6 +34,9 @@
       <SelectionState runConfigName="signUpActivityIntentTest()">
       </SelectionState>
       <SelectionState runConfigName="welcomeUserIntentTest()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="reportLogsActivityIntentTest()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
