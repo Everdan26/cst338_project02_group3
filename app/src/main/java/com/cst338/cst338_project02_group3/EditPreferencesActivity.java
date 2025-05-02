@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
-import com.cst338.cst338_project02_group3.database.entities.User;
-import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import com.cst338.cst338_project02_group3.databinding.ActivityEditPreferencesBinding;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EditPreferencesActivity extends AppCompatActivity {
 
@@ -24,13 +21,13 @@ public class EditPreferencesActivity extends AppCompatActivity {
     ActivityEditPreferencesBinding binding;
 
     private int loggedInUserId;
-    private UserInfo userInfo;
     private UserPreferences userPreferences;
 
-    private int newAge;
-    private String newGender;
-
     private DatingAppRepository repository;
+
+    private static final int NUMBER_OF_THREADS = 4;
+
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,26 +40,24 @@ public class EditPreferencesActivity extends AppCompatActivity {
 
         loggedInUserId = getIntent().getIntExtra(EDIT_PREFERENCES_USER_ID, -1);
         if (loggedInUserId != -1) {
-            LiveData<UserInfo> userInfoObserver = repository.getUserInfoByUserId(loggedInUserId);
-            userInfoObserver.observe(this, userInfo -> {
-                this.userInfo = userInfo;
-            });
-        }
-
-        if (userInfo != null) {
-            LiveData<UserPreferences> userPreferencesObserver = repository.getUserPreferencesByInfoId(userInfo.getUserInfoId());
-            userPreferencesObserver.observe(this, userPreferences -> {
-                this.userPreferences = userPreferences;
+            LiveData<UserPreferences> userPreferencesObserver = repository.getUserPreferencesByUserId(loggedInUserId);
+            userPreferencesObserver.observe(this, userPreferencesId -> {
+                this.userPreferences = userPreferencesId;
+                if (this.userPreferences != null) {
+                    binding.editPreferencesAgeEditText.setHint(Integer.toString(userPreferences.getAge()));
+                    binding.editPreferencesGenderEditText.setHint(this.userPreferences.getGender());
+                }
             });
         }
 
         binding.editPreferencesSaveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newAge = Integer.parseInt(binding.editPreferencesAgeEditText.getText().toString());
-                newGender = binding.editPreferencesGenderEditText.toString();
+                int age = Integer.parseInt(binding.editPreferencesAgeEditText.getText().toString());
+                String gender = binding.editPreferencesGenderEditText.toString();
 
-                repository.updateUserPreferences(newAge, newGender, userPreferences.getUserPreferencesId());
+                sendPreferences(age, gender);
+
                 Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
@@ -76,6 +71,24 @@ public class EditPreferencesActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void sendPreferences(int age, String gender) {
+        //TODO: see why this is throwing an error unhappy that it's working on the main thread.
+        //Need to make it asynchronous somehow.
+        if (loggedInUserId != -1) {
+            LiveData<UserPreferences> userPreferencesObserver = repository.getUserPreferencesByUserId(loggedInUserId);
+            userPreferencesObserver.observe(this, userPreferencesId -> {
+                this.userPreferences = userPreferencesId;
+                if (this.userPreferences != null) {
+                    executorService.execute(() -> {
+                        repository.updateUserPreferences(age, gender, userPreferencesId.getUserPreferencesId());
+                    });
+
+                }
+            });
+        }
     }
 
     static Intent editPreferencesIntentFactory (Context context, int userId) {

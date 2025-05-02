@@ -17,8 +17,12 @@ public interface UserPreferencesDAO {
     @Delete
     void delete(UserPreferences userPreference);
 
-    @Query("SELECT * FROM " + DatingAppDatabase.PREFERENCES_TABLE + " WHERE userInfoId == :userInfoId")
-    LiveData<UserPreferences> getUserPreferencesByInfoId(int userInfoId);
+    @Query("SELECT * FROM " + DatingAppDatabase.PREFERENCES_TABLE
+                + " INNER JOIN " + DatingAppDatabase.USERINFO_TABLE
+                + " ON " + DatingAppDatabase.PREFERENCES_TABLE + ".userInfoId=" + DatingAppDatabase.USERINFO_TABLE + ".userInfoId"
+                + " WHERE userId = :userId")
+    LiveData<UserPreferences> getUserPreferencesByUserId(int userId);
+
 
     @Query("UPDATE " + DatingAppDatabase.PREFERENCES_TABLE + " SET age = :age, gender = :gender WHERE userPreferencesId = :userPreferencesId")
     void updateUserPreferences(int age, String gender, int userPreferencesId);

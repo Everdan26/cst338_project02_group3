@@ -108,8 +108,8 @@ public class DatingAppRepository {
         return userInfoDAO.getRandomUserInfo(prefGender);
     }
 
-    public LiveData<UserPreferences> getUserPreferencesByInfoId(int userInfoId) {
-        return userPreferencesDAO.getUserPreferencesByInfoId(userInfoId);
+    public LiveData<UserPreferences> getUserPreferencesByUserId(int userId) {
+        return userPreferencesDAO.getUserPreferencesByUserId(userId);
     }
 
     public void updateUserPreferences(int age, String gender, int userPreferencesId) {
