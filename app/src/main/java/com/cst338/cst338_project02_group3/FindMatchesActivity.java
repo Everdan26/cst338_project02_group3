@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.cst338.cst338_project02_group3.database.DatingAppRepository;
+import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.databinding.ActivityFindMatchesBinding;
@@ -40,7 +43,7 @@ public class FindMatchesActivity extends AppCompatActivity {
         }
 
         //Like button or Yes button
-        binding.FindMatchesResultUserInfoBtnBack.setOnClickListener(new View.OnClickListener() {
+        binding.FindMatchesResultInfoBtnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
@@ -48,12 +51,12 @@ public class FindMatchesActivity extends AppCompatActivity {
             }
         });
 
-        //back button
-        binding.FindMatchesResultUserInfoBtnBack.setOnClickListener(new View.OnClickListener() {
+        //Report Button
+        binding.FindMatchesResultInfoBtnReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(),loggedInUserId);
-                startActivity(intent);
+               repository.insertReportUser(randomUserInfo);
+               Toast.makeText(FindMatchesActivity.this,"Successfully reported!", Toast.LENGTH_SHORT).show();
             }
         });
 
