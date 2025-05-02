@@ -67,6 +67,15 @@ public class WelcomeAdmin extends AppCompatActivity {
             }
         });
 
+        //Ban Users
+        binding.banUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AdminBanActivity.adminBanActivityIntentFactory(getApplicationContext(),loggedInUserId);
+                startActivity(intent);
+            }
+        });
+
     }
 
     static Intent welcomeAdminIntentFactory(Context context, int userId) {

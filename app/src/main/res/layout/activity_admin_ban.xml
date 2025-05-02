@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1B5D0"
+    tools:context=".AdminBanActivity">
+
+    <TextView
+        android:id="@+id/banTitle"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="16dip"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/ban_users_title"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/banLogsDisplay"
+        android:layout_width="390dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dip"
+        android:textColor="@color/black"
+        android:padding="8dp"
+        android:textSize="32sp"
+        android:text="@string/banned_users_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banTitle" />
+
+    <TextView
+        android:id="@+id/banUserText"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:text="@string/ban_edit_text"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banLogsDisplay" />
+
+    <EditText
+        android:id="@+id/editTextUserIdToBan"
+        android:hint="@string/enter_user_id_ban_hint"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/banUserText"/>
+
+    <Button
+        android:id="@+id/banUserSubmitButton"
+        android:text="@string/ban_user_submit_button_text"
+        android:textSize="32sp"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserIdToBan" />
+
+    <Button
+        android:id="@+id/updateBanLogBtn"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#D43BB2"
+        android:text="@string/update_log"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banUserSubmitButton" />
+
+    <Button
+        android:id="@+id/mainMenuAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#D43B66"
+        android:text="@string/main_menu"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/updateBanLogBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
