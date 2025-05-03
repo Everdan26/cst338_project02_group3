@@ -75,5 +75,18 @@
     <string name="ban_edit_text">Type in the ID number of the user you want to ban/unban:</string>
     <string name="enter_user_id_ban_hint">Enter User Id</string>
     <string name="unban_button">Unban</string>
+    <string name="set_up_your_profile">Set Up Your Profile</string>
+    <string name="what_is_your_name">What is your name?</string>
+    <string name="finish_profile">Finish Profile</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="enter_your_age">Enter Your Age</string>
+    <string name="how_old_are_you">How old are you?</string>
+    <string name="what_is_your_gender">What is your gender?</string>
+    <string name="enter_your_gender">Enter your Gender</string>
+    <string name="bio_prompt">What should we know about you?</string>
+    <string name="enter_a_brief_bio">Enter a brief bio</string>
+    <string name="enter_the_url_for_a_photo_of_you">Enter the URL for a photo of you</string>
+    <string name="enter_a_url">Enter a URL</string>
+    <string name="set_up_your_dating_preferences">Set Up Your Dating Preferences</string>
 
 </resources>

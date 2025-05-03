@@ -67,6 +67,10 @@ public class DatingAppRepository {
         return userDAO.getUserByUserName(username);
     }
 
+    public LiveData<User> getNewestUser() {
+        return userDAO.getNewestUser();
+    }
+
     public void insertUser(User... user) {
         DatingAppDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.insert(user);
@@ -109,17 +113,29 @@ public class DatingAppRepository {
         return userInfoDAO.getRandomUserInfo(prefGender);
     }
 
-
-    public LiveData<UserPreferences> currUserPreference(int loggedInUserId) {
-        return userPreferencesDAO.getCurrUserPreference(loggedInUserId);
+    // Adding userInfo record
+    public void insertUserInfo(UserInfo... userInfo) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            userInfoDAO.insert(userInfo);
+        });
     }
 
-    // Updating userInfo
+    // Updating existing userInfo
     public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
         CompletableFuture.runAsync(() -> {
             userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
         });
+    }
 
+    // Updating new userInfo
+    public void updateUserIdOfNewRecord(int userId) {
+        CompletableFuture.runAsync(() -> {
+            userInfoDAO.updateUserIdOfNewRecord(userId);
+        });
+    }
+
+    public LiveData<UserPreferences> currUserPreference(int loggedInUserId) {
+        return userPreferencesDAO.getCurrUserPreference(loggedInUserId);
     }
 
     public void insertReportUser(UserInfo otherUserInfo) {
@@ -128,6 +144,8 @@ public class DatingAppRepository {
             reportDAO.insert(report);
         });
     }
+
+
 
     public void saveMatch(int user1Id, int user2Id, boolean like) {
         DatingAppDatabase.databaseWriteExecutor.execute(() -> {
@@ -159,8 +177,6 @@ public class DatingAppRepository {
             }
         });
     }
-
-
 
     public LiveData<UserPreferences> getUserPreferencesByUserId(int userId) {
         return userPreferencesDAO.getUserPreferencesByUserId(userId);

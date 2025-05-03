@@ -18,6 +18,12 @@
             android:name=".AdminBanActivity"
             android:exported="false" />
         <activity
+            android:name=".SetUpPreferencesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SetUpProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditPreferencesActivity"
             android:exported="false" />
         <activity
