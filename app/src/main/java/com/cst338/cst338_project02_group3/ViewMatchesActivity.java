@@ -14,6 +14,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserInfo;
 import com.cst338.cst338_project02_group3.database.entities.Matches;
 import com.cst338.cst338_project02_group3.databinding.ActivityViewMatchesBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewMatchesActivity extends AppCompatActivity {
@@ -27,8 +28,10 @@ public class ViewMatchesActivity extends AppCompatActivity {
     private int loggedInUserId;
 
     private UserInfo userInfo;
-    private List<Matches> matchesList;
+    private List<UserInfo> matchesList = new ArrayList<>();
     private UserInfo matchedUserInfo;
+
+    private int currentMatchIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +45,35 @@ public class ViewMatchesActivity extends AppCompatActivity {
             LiveData<List<UserInfo>> usersWhoLikedMe = repository.getUsersWhoLikedMe(loggedInUserId);
             usersWhoLikedMe.observe(this, users -> {
                 if (users != null && !users.isEmpty()){
-                    UserInfo userInfo = users.get(0);
-                    binding.textViewName.setText(userInfo.getName());
-                    binding.textViewAge.setText("Age: " + userInfo.getAge());
-                    binding.textViewBio.setText("Bio: " + userInfo.getBio());
-
-                    Glide.with(binding.profileImg.getContext())
-                            .load(userInfo.getPhoto())
-                            .into(binding.profileImg);
+                    matchesList.clear();
+                    matchesList.addAll(users);
+                    currentMatchIndex = 0;
+                    displayMatch(currentMatchIndex);
+                } else {
+                    binding.textViewName.setText("No matches yet.");
+                    binding.textViewAge.setText("");
+                    binding.textViewBio.setText("");
+                    binding.profileImg.setImageDrawable(null);
                 }
             });
         }
+
+        // Left button
+        binding.matchBtnLeft.setOnClickListener(v -> {
+            if (!matchesList.isEmpty()) {
+                currentMatchIndex = (currentMatchIndex - 1 + matchesList.size()) % matchesList.size();
+                displayMatch(currentMatchIndex);
+            }
+        });
+
+        // Right button
+        binding.matchBtnRight.setOnClickListener(v -> {
+            if (!matchesList.isEmpty()) {
+                currentMatchIndex = (currentMatchIndex + 1) % matchesList.size();
+                displayMatch(currentMatchIndex);
+            }
+        });
+
 
         //back button
         binding.viewMatchesBackButton.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +85,16 @@ public class ViewMatchesActivity extends AppCompatActivity {
         });
     }
 
+    private void displayMatch(int index) {
+        UserInfo user = matchesList.get(index);
+        binding.textViewName.setText(user.getName());
+        binding.textViewAge.setText("Age: " + user.getAge());
+        binding.textViewBio.setText("Bio: " + user.getBio());
+
+        Glide.with(binding.profileImg.getContext())
+                .load(user.getPhoto())
+                .into(binding.profileImg);
+    }
 
     static Intent viewMatchesIntentFactory(Context context, int userId) {
             Intent intent = new Intent(context, ViewMatchesActivity.class);

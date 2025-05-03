@@ -2,12 +2,14 @@ package com.cst338.cst338_project02_group3;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -28,6 +30,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
@@ -130,12 +134,80 @@ public class DatabaseTest {
         assertEquals("newPassword", userDAO.getUserByUsernameTest("testuser").getPassword());
     }
 
+
+    //User Preferences Test (insert)
+    @Test
+    public void preferenceTest() {
+        userPreferences = new UserPreferences(userInfoId, 21, "F");
+        userPreferencesDAO.insert(userPreferences);
+        assertNotNull(userPreferences);
+    }
+
+    //User Preferences Test (delete)
+    @Test
+    public void preferenceDeleteTest() {
+        userPreferences = new UserPreferences(userInfoId, 21, "F");
+        userPreferencesDAO.delete(userPreferences);
+        UserPreferences getPref = userPreferencesDAO.getUserPreferencesByUserId(userId).getValue();
+        assertNull(getPref);
+    }
+
+    //Insert UserInfo test
+    @Test
+    public void insertUserInfoTest(){
+        userInfoDAO.insert(userInfo);
+        assertNotNull(userInfo);
+        assertEquals("Monte", userInfo.getName());
+        assertEquals(21, userInfo.getAge());
+    }
+
+    //Delete UserInfo test
+    @Test
+    public void deleteUserInfoTest() {
+        UserInfo u1 = new UserInfo(3, "Bob", 22, "M", "lol", "");
+        UserInfo u2 = new UserInfo(4, "Bobby", 28, "M", "haha", "");
+        userInfoDAO.insert(u1,u2);
+
+        userInfoDAO.deleteAll();
+        UserInfo getU1 = userInfoDAO.getUserInfoByUserId(3).getValue();
+        assertNull(getU1);
+        UserInfo getU2 = userInfoDAO.getUserInfoByUserId(4).getValue();
+        assertNull(getU2);
+    }
+
     //Report Logs Test
     @Test
     public void insertReport() {
         reportDAO.insert(report);
         assertNotNull(reportDAO.getReportByUserId(report.getUserId()));
 
+    }
+
+    //Matches Entity Test
+    @Test
+    public void insertMatchTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+
+        Matches match = new Matches(user.getId(), matchUser.getId(), true);
+        matchesDAO.insert(match);
+
+        Matches retrievedMatch = matchesDAO.getMatchByUserIds(user.getId(), matchUser.getId());
+        assertNotNull(retrievedMatch);
+        assertEquals(user.getId(), retrievedMatch.getUserId1());
+        assertEquals(matchUser.getId(), retrievedMatch.getUserId2());
+        assertTrue(retrievedMatch.isLike());
+    }
+
+    //Delete all matches test
+    public void deleteAllMatchesTest() {
+        userDAO.insert(user);
+        userDAO.insert(matchUser);
+        Matches match = new Matches(user.getId(), matchUser.getId(), true);
+        matchesDAO.insert(match);
+
+        matchesDAO.deleteAll();
+        assertTrue(matchesDAO.getAllMatches().isEmpty());
     }
 
     @Test
@@ -162,6 +234,5 @@ public class DatabaseTest {
         assertTrue(reportDAO.banStatus(report.getUserId()));
 
     }
-
 
 }

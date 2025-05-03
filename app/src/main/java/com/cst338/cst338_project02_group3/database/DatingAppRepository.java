@@ -10,6 +10,7 @@ import com.cst338.cst338_project02_group3.database.entities.Matches;
 import com.cst338.cst338_project02_group3.database.entities.Report;
 import com.cst338.cst338_project02_group3.database.entities.User;
 import com.cst338.cst338_project02_group3.database.entities.UserInfo;
+import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,4 +133,57 @@ public class DatingAppRepository {
             userInfoDAO.updateUserIdOfNewRecord(userId);
         });
     }
+
+    public LiveData<UserPreferences> currUserPreference(int loggedInUserId) {
+        return userPreferencesDAO.getCurrUserPreference(loggedInUserId);
+    }
+
+    public void insertReportUser(UserInfo otherUserInfo) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Report report = new Report(otherUserInfo.getUserId(),"Reported by user", false);
+            reportDAO.insert(report);
+        });
+    }
+
+
+
+    public void saveMatch(int user1Id, int user2Id, boolean like) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Matches match = new Matches(user1Id, user2Id, like);
+            matchesDAO.insert(match);
+        });
+    }
+
+    public LiveData<List<UserInfo>> getUnmatchedUsers(int currentUserId) {
+        return userInfoDAO.getUnmatchedUsers(currentUserId);
+    }
+
+    //admin ban
+    public void banUser(int userId) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() ->
+                reportDAO.updateBanStatus(true, userId)
+        );
+    }
+
+    public LiveData<List<Integer>> getAllBannedUserIds() {
+        return reportDAO.getAllBannedUserIds();
+    }
+
+    public void unbanUser(int userId) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            Report existing = reportDAO.getReportByUserId(userId);
+            if (existing != null) {
+                reportDAO.updateBanStatus(false, userId);
+            }
+        });
+    }
+
+    public LiveData<UserPreferences> getUserPreferencesByUserId(int userId) {
+        return userPreferencesDAO.getUserPreferencesByUserId(userId);
+    }
+
+    public void updateUserPreferences(int age, String gender, int userPreferencesId) {
+        userPreferencesDAO.updateUserPreferences(age, gender, userPreferencesId);
+    }
+
 }

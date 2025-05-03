@@ -59,7 +59,7 @@
     <string name="currentGenderString">%1$s</string>
     <string name="currentBioString">%1$s</string>
     <string name="currentPfpString">%1$s</string>
-    <string name="yes">Yes</string>
+    <string name="yes">Like</string>
     <string name="no">No</string>
     <string name="report">Report</string>
     <string name="edit_your_preferences">Edit your Preferences</string>
@@ -67,6 +67,14 @@
     <string name="ageColon">Age:</string>
     <string name="genderColon">Gender:</string>
     <string name="gender">Gender</string>
+    <string name="edit_preferences">Edit Preferences</string>
+    <string name="ban_users">Ban Users</string>
+    <string name="ban_users_title">Ban Users</string>
+    <string name="banned_users_text">Banned users:</string>
+    <string name="ban_user_submit_button_text">Ban</string>
+    <string name="ban_edit_text">Type in the ID number of the user you want to ban/unban:</string>
+    <string name="enter_user_id_ban_hint">Enter User Id</string>
+    <string name="unban_button">Unban</string>
     <string name="set_up_your_profile">Set Up Your Profile</string>
     <string name="what_is_your_name">What is your name?</string>
     <string name="finish_profile">Finish Profile</string>

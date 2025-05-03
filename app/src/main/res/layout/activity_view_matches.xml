@@ -69,6 +69,30 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:id="@+id/matchBtnLeft"
+        android:layout_width="460px"
+        android:layout_height="200px"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="#D43B66"
+        android:text="Back"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewBio" />
+
+    <Button
+        android:id="@+id/matchBtnRight"
+        android:layout_width="460px"
+        android:layout_height="200px"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="#D43B66"
+        android:text="Next"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewBio" />
+
+    <Button
         android:id="@+id/viewMatchesBackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,5 +100,6 @@
         android:text="@string/back"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
