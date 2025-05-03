@@ -51,4 +51,7 @@ public interface UserDAO {
 
     @Query("UPDATE " + DatingAppDatabase.USER_TABLE + " SET password = :password WHERE username == :username")
     void updatePassword(String username, String password);
+
+    @Query("SELECT * FROM " + DatingAppDatabase.USER_TABLE + " ORDER BY id DESC LIMIT 1")
+    LiveData<User> getNewestUser();
 }

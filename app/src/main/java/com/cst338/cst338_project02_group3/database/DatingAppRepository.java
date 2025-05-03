@@ -66,6 +66,10 @@ public class DatingAppRepository {
         return userDAO.getUserByUserName(username);
     }
 
+    public LiveData<User> getNewestUser() {
+        return userDAO.getNewestUser();
+    }
+
     public void insertUser(User... user) {
         DatingAppDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.insert(user);
@@ -115,10 +119,17 @@ public class DatingAppRepository {
         });
     }
 
-    // Updating userInfo
+    // Updating existing userInfo
     public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
         CompletableFuture.runAsync(() -> {
             userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
+        });
+    }
+
+    // Updating new userInfo
+    public void updateUserIdOfNewRecord(int userId) {
+        CompletableFuture.runAsync(() -> {
+            userInfoDAO.updateUserIdOfNewRecord(userId);
         });
     }
 }

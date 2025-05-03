@@ -31,7 +31,7 @@ public interface UserInfoDAO {
     LiveData<UserInfo> getUserInfoByUserId(int userId);
 
     /**
-     * <h2>Updates a UserInfo record</h2>
+     * <h2>Updates an existing UserInfo record</h2>
      * @param name new name
      * @param age new age
      * @param gender new gender
@@ -42,6 +42,10 @@ public interface UserInfoDAO {
     @Query("UPDATE " + DatingAppDatabase.USERINFO_TABLE + " SET name = :name, age = :age, " +
             "gender = :gender, bio = :bio, photo = :photo WHERE userId = :userId")
     void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId);
+
+    @Query("UPDATE " + DatingAppDatabase.USERINFO_TABLE + " SET userId = :userId WHERE " +
+            "AGE = -1")
+    void updateUserIdOfNewRecord(int userId);
 
     @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " WHERE gender == :prefGender ORDER BY random() LIMIT 1")
     LiveData<UserInfo> getRandomUserInfo(String prefGender);
