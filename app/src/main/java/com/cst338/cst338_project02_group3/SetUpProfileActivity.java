@@ -36,16 +36,12 @@ public class SetUpProfileActivity extends AppCompatActivity {
         repository = DatingAppRepository.getRepository(getApplication());
 
         // Creating UserInfo record with id of current user with default values
+        // CODE COULD BE SIMPLIFIED, WILL WORRY ABOUT IT LATER
         loggedInUserId = getIntent().getIntExtra(SET_UP_PROFILE_ACTIVITY_USER_ID, -1);
-        /*
-        TODO: There is an issue where the passed value for loggedInUserId is equal to 0 instead of the
-              userId of the newly created record in the database... very strange? Maybe use an if statement to
-              fetch id of newest entry? I'm gonna try that.
-         */
         if (loggedInUserId != -1) {
             newUserInfo = new UserInfo(loggedInUserId, "(No Name)", -1, "(No Gender)", "(No bio)", "https://upload.wikimedia.org/wikipedia/commons/b/bc/Unknown_person.jpg");
             repository.insertUserInfo(newUserInfo);
-            if (loggedInUserId == 0) {
+            if (loggedInUserId == 0) {  // Fetching newest entry in User table (for getting new Id)
                 LiveData<User> userObserver = repository.getNewestUser();
                 userObserver.observe(this, user -> {
                     this.newUser = user;
@@ -65,6 +61,7 @@ public class SetUpProfileActivity extends AppCompatActivity {
 
     private void changeNewRecordId() {
         loggedInUserId = newUser.getId();
+        newUserInfo.setUserId(newUser.getId());
         repository.updateUserIdOfNewRecord(loggedInUserId);
     }
 

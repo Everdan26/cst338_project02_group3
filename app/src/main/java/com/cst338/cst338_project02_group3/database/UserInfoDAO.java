@@ -23,7 +23,7 @@ public interface UserInfoDAO {
     void deleteAll();
 
     /**
-     * <h2>Retrieves a UserInfo record by userId</h2>
+     * <h3>Retrieves a UserInfo record by userId</h3>
      * @param userId ID of retrieved UserInfo record
      * @return UserInfo record
      */
@@ -31,7 +31,7 @@ public interface UserInfoDAO {
     LiveData<UserInfo> getUserInfoByUserId(int userId);
 
     /**
-     * <h2>Updates an existing UserInfo record</h2>
+     * <h3>Updates an existing UserInfo record</h3>
      * @param name new name
      * @param age new age
      * @param gender new gender
@@ -43,6 +43,10 @@ public interface UserInfoDAO {
             "gender = :gender, bio = :bio, photo = :photo WHERE userId = :userId")
     void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId);
 
+    /**
+     * <h3>Updates the userId of a newly created userInfo record</h3>
+     * @param userId userId that the new record should be set to (from 0)
+     */
     @Query("UPDATE " + DatingAppDatabase.USERINFO_TABLE + " SET userId = :userId WHERE " +
             "AGE = -1")
     void updateUserIdOfNewRecord(int userId);
