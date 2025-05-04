@@ -88,5 +88,10 @@
     <string name="enter_the_url_for_a_photo_of_you">Enter the URL for a photo of you</string>
     <string name="enter_a_url">Enter a URL</string>
     <string name="set_up_your_dating_preferences">Set Up Your Dating Preferences</string>
+    <string name="set_your_dating_preferences">Set your dating preferences</string>
+    <string name="min_age_prompt">What\'s the minimum age of who you\'re interested in dating?</string>
+    <string name="enter_your_age_preference">Enter your age preference</string>
+    <string name="gender_pref_prompt">What gender are you interested in dating?</string>
+    <string name="enter_your_gender_preference">Enter your gender preference</string>
 
 </resources>
