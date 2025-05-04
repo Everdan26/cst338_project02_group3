@@ -64,4 +64,6 @@ public interface UserInfoDAO {
     @Query("SELECT * FROM userInfoTable WHERE userId != :currentUserId AND userId NOT IN (SELECT userId2 FROM matchesTable WHERE userId1 = :currentUserId)")
     LiveData<List<UserInfo>> getUnmatchedUsers(int currentUserId);
 
+    @Query("SELECT * FROM " + DatingAppDatabase.USERINFO_TABLE + " ORDER BY userInfoId DESC LIMIT 1")
+    LiveData<UserInfo> getNewestUserInfo();
 }

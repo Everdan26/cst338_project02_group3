@@ -120,14 +120,14 @@ public class DatingAppRepository {
         });
     }
 
-    // Updating existing userInfo
+    // Updating existing userInfo record
     public void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId) {
         CompletableFuture.runAsync(() -> {
             userInfoDAO.updateUserInfo(name, age, gender, bio, photo, userId);
         });
     }
 
-    // Updating new userInfo
+    // Updating new userInfo record
     public void updateUserIdOfNewRecord(int userId) {
         CompletableFuture.runAsync(() -> {
             userInfoDAO.updateUserIdOfNewRecord(userId);
@@ -136,6 +136,13 @@ public class DatingAppRepository {
 
     public LiveData<UserPreferences> currUserPreference(int loggedInUserId) {
         return userPreferencesDAO.getCurrUserPreference(loggedInUserId);
+    }
+
+    // Updating new userPreferences record
+    public void updateUserPrefInfoId(int userInfoId) {
+        CompletableFuture.runAsync(() -> {
+           userPreferencesDAO.updateUserPrefInfoId(userInfoId);
+        });
     }
 
     public void insertReportUser(UserInfo otherUserInfo) {
@@ -184,6 +191,22 @@ public class DatingAppRepository {
 
     public void updateUserPreferences(int age, String gender, int userPreferencesId) {
         userPreferencesDAO.updateUserPreferences(age, gender, userPreferencesId);
+    }
+
+    public void insertUserPreferences(UserPreferences... userPreferences) {
+        DatingAppDatabase.databaseWriteExecutor.execute(() -> {
+            userPreferencesDAO.insert(userPreferences);
+        });
+    }
+
+    public LiveData<UserInfo> getNewestUserInfo() {
+        return userInfoDAO.getNewestUserInfo();
+    }
+
+    public void saveNewUserPreference(int age, String gender, int userInfoId) {
+        CompletableFuture.runAsync(() -> {
+            userPreferencesDAO.saveNewUserPreference(age, gender, userInfoId);
+        });
     }
 
 }
