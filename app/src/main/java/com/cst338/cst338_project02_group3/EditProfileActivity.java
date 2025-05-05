@@ -81,6 +81,15 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        //Back button to send back to WelcomeUser
+        binding.editProfileBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = WelcomeUser.welcomeUserIntentFactory(getApplicationContext(), loggedInUserId);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void confirmationDialog() {

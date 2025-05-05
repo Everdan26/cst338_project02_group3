@@ -23,7 +23,6 @@ public class IntentTest {
     private static final String MY_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.USER_MATCHES_ACTIVITY_USER_ID";
     private static final String USER_ADMIN = "com.cst338.project02_group3.USER_ADMIN";
     private static final String FIND_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.FIND_MATCHES_ACTIVITY_USER_ID";
-    private static final String PREFERRED_GENDER = "com.cst338.project02_group3.PREFERRED_GENDER";
     private static final String EDIT_PREFERENCES_USER_ID = "com.cst338.project02_group3.EDIT_PREFERENCES_USER_ID";
 
     @Test
@@ -93,8 +92,7 @@ public class IntentTest {
     @Test
     public void findMatchesActivityIntentTest() {
         Context context = ApplicationProvider.getApplicationContext();
-        Intent intent = FindMatchesActivity.findMatchesIntentFactory(context, TEST_STRING, TEST_VALUE);
-        assertEquals(TEST_STRING, intent.getStringExtra(PREFERRED_GENDER));
+        Intent intent = FindMatchesActivity.findMatchesIntentFactory(context, TEST_VALUE);
         assertEquals(TEST_VALUE, intent.getIntExtra(FIND_MATCHES_ACTIVITY_USER_ID, -1));
     }
 

@@ -23,7 +23,6 @@ public class FindMatchesActivity extends AppCompatActivity {
     private ActivityFindMatchesBinding binding;
 
     private static final String FIND_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.FIND_MATCHES_ACTIVITY_USER_ID";
-    private static final String PREFERRED_GENDER = "com.cst338.project02_group3.PREFERRED_GENDER";
     private DatingAppRepository repository;
     private User user;
     private int loggedInUserId;
@@ -95,9 +94,8 @@ public class FindMatchesActivity extends AppCompatActivity {
         });
     }
 
-    static Intent findMatchesIntentFactory(Context context, String prefGender, int loggedInUser) {
+    static Intent findMatchesIntentFactory(Context context, int loggedInUser) {
         Intent intent = new Intent(context, FindMatchesActivity.class);
-        intent.putExtra(PREFERRED_GENDER,prefGender);
         intent.putExtra(FIND_MATCHES_ACTIVITY_USER_ID,loggedInUser);
 
         return intent;
