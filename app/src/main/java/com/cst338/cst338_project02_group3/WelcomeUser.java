@@ -90,7 +90,7 @@ public class WelcomeUser extends AppCompatActivity {
         binding.findMatchesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext(),currUserPreference.getGender(),loggedInUserId);
+                Intent intent = FindMatchesActivity.findMatchesIntentFactory(getApplicationContext(), loggedInUserId);
                 startActivity(intent);
             }
         });
