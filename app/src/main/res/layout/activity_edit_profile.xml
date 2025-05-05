@@ -196,14 +196,31 @@
 
     <Button
         android:id="@+id/editProfileSaveChangesButton"
-        android:layout_width="300dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/save_changes"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/editProfileBackButton"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/back"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toEndOf="@id/editProfileSaveChangesButton"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileViewProfileButton"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/editProfileViewProfileButton"
