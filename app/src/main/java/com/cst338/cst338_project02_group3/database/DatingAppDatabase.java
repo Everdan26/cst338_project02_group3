@@ -19,7 +19,7 @@ import com.cst338.cst338_project02_group3.database.entities.UserPreferences;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 16, exportSchema = false)
+@Database(entities = {User.class, UserInfo.class, Matches.class, Report.class, UserPreferences.class}, version = 17, exportSchema = false)
 public abstract class DatingAppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "DatingAppDatabase";
     public static final String USER_TABLE = "userTable";
@@ -86,6 +86,18 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 User girlTest = new User("girl", "girl");
                 userDAO.insert(girlTest);
 
+                User helmet = new User("helmet", "helmet");
+                userDAO.insert(helmet);
+
+                User buttercup = new User("buttercup", "buttercup");
+                userDAO.insert(buttercup);
+
+                User westley = new User("westley", "westley");
+                userDAO.insert(westley);
+
+                User inigo = new User("inigo", "inigo");
+                userDAO.insert(inigo);
+
                 //Report User test
                 ReportDAO repDAO = INSTANCE.reportDAO();
                 repDAO.insert(new Report(testUser1.getId(),"Inappropriate Picture",testUser1.isBan()));
@@ -112,6 +124,26 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                         "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F16%2Fb6%2Fdf%2F16b6df52a0d8f83a8fd717587dde86eb.jpg&f=1&nofb=1&ipt=60120f3d6c380f67c36e7a44ada1a1f6eabfcc42153c592306fac928be991966");
                 userInfoDAO.insert(testUserNumberThree);
 
+                UserInfo darkHelmet = new UserInfo(9, "Helmet", 34, "M",
+                            "I am your father's brother's nephew's cousin's former roommate.",
+                            "https://static.wikia.nocookie.net/spaceballs/images/2/25/Dark_Helmet.jpg/");
+                userInfoDAO.insert(darkHelmet);
+
+                UserInfo princessButtercup = new UserInfo(10, "Buttercup", 21, "F",
+                        "Westley, What about the R.O.U.S.'s?",
+                        "https://static.wikia.nocookie.net/princessbride/images/b/b9/Princess_Buttercup.png/");
+                userInfoDAO.insert(princessButtercup);
+
+                UserInfo manInBlack = new UserInfo(11, "Westley", 25, "M",
+                        "Have you considered piracy? You'd make a wonderful Dread Pirate Roberts.",
+                                "https://images.hobbydb.com/processed_uploads/subject_photo/subject_photo/image/37341/1519151546-3600-7296/Westley-Buttercup-in-The-Princess-Bride-movie-couples-19610752-500-281_large.jpg");
+                userInfoDAO.insert(manInBlack);
+
+                UserInfo inigoMontoya = new UserInfo(12, "Inigo", 35, "M",
+                            "Hello. My name is Inigo Montoya. You killed my father. Prepare to die.",
+                                "https://www.dictionary.com/e/wp-content/uploads/2018/03/Inigo-Montoya1.jpg");
+                userInfoDAO.insert(inigoMontoya);
+
 
                 //Test for user matches
                     MatchesDAO matchesDAO = INSTANCE.matchesDAO();
@@ -130,11 +162,15 @@ public abstract class DatingAppDatabase extends RoomDatabase {
                 UserPreferences testOne = new UserPreferences(2,18,"M");
                 UserPreferences testTwo = new UserPreferences(3,18,"F");
                 UserPreferences adminTwo = new UserPreferences(1,18,"M");
+                UserPreferences buttercupPref = new UserPreferences(6, 21, "M");
+                UserPreferences westleyPref = new UserPreferences(7, 21, "F");
 
 
                 userPreferencesDAO.insert(testOne);
                 userPreferencesDAO.insert(testTwo);
                 userPreferencesDAO.insert(adminTwo);
+                userPreferencesDAO.insert(buttercupPref);
+                userPreferencesDAO.insert(westleyPref);
 
             });
 
