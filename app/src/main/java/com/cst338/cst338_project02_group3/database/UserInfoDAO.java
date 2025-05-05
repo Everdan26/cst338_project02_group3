@@ -44,6 +44,23 @@ public interface UserInfoDAO {
     void updateUserInfo(String name, int age, String gender, String bio, String photo, int userId);
 
     /**
+     * <h3>For unit test of SQL call of above function</h3><br>
+     * Because CompletableFutures are very difficult for unit testing, this method was implemented
+     * to test the same SQL query. This method returns the number of rows that were accessed and changed,
+     * which should be equal to 1.
+     * @param name new name
+     * @param age new age
+     * @param gender new gender
+     * @param bio new bio
+     * @param photo new photo
+     * @param userId userId of record to be changed
+     * @return number of rows changed (Expected: 1)
+     */
+    @Query("UPDATE " + DatingAppDatabase.USERINFO_TABLE + " SET name = :name, age = :age, " +
+            "gender = :gender, bio = :bio, photo = :photo WHERE userId = :userId")
+    int updateUserInfoTest(String name, int age, String gender, String bio, String photo, int userId);
+
+    /**
      * <h3>Updates the userId of a newly created userInfo record</h3>
      * @param userId userId that the new record should be set to (from 0)
      */

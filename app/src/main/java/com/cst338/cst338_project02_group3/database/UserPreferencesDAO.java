@@ -37,4 +37,9 @@ public interface UserPreferencesDAO {
     @Query("UPDATE " + DatingAppDatabase.PREFERENCES_TABLE + " SET age = :age, gender = :gender " +
             "WHERE userInfoId = :userInfoId")
     void saveNewUserPreference(int age, String gender, int userInfoId);
+
+    // For testing purposes only
+    @Query("UPDATE " + DatingAppDatabase.PREFERENCES_TABLE + " SET age = :age, gender = :gender " +
+            "WHERE userInfoId = :userInfoId")
+    int saveNewUserPreferenceTest(int age, String gender, int userInfoId);
 }
