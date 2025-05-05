@@ -24,6 +24,9 @@ public class IntentTest {
     private static final String USER_ADMIN = "com.cst338.project02_group3.USER_ADMIN";
     private static final String FIND_MATCHES_ACTIVITY_USER_ID = "com.cst338.project02_group3.FIND_MATCHES_ACTIVITY_USER_ID";
     private static final String EDIT_PREFERENCES_USER_ID = "com.cst338.project02_group3.EDIT_PREFERENCES_USER_ID";
+    private static final String EDIT_PROFILE_ACTIVITY_USER_ID = "com.cst338.project02_group3.EDIT_PROFILE_ACTIVITY_USER_ID";
+    private static final String SET_UP_PROFILE_ACTIVITY_USER_ID = "com.cst338.project02_group3.SET_UP_PROFILE_ACTIVITY_USER_ID";
+    private static final String SET_UP_PREFERENCES_ACTIVITY_USER_ID = "com.cst338.project02_group3.SET_UP_PROFILE_ACTIVITY_USER_ID";
 
     @Test
     public void userProfileIntentTest() {
@@ -101,6 +104,27 @@ public class IntentTest {
         Context context = ApplicationProvider.getApplicationContext();
         Intent intent = EditPreferencesActivity.editPreferencesIntentFactory(context, TEST_VALUE);
         assertEquals(TEST_VALUE, intent.getIntExtra(EDIT_PREFERENCES_USER_ID, -1));
+    }
+
+    @Test
+    public void editProfileActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = EditProfileActivity.editProfileIntentFactory(context, TEST_VALUE);
+        assertEquals(TEST_VALUE, intent.getIntExtra(EDIT_PROFILE_ACTIVITY_USER_ID, -1));
+    }
+
+    @Test
+    public void setUpProfileActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = SetUpProfileActivity.setUpProfileIntentFactory(context, TEST_VALUE);
+        assertEquals(TEST_VALUE, intent.getIntExtra(SET_UP_PROFILE_ACTIVITY_USER_ID, -1));
+    }
+
+    @Test
+    public void setUpPreferencesActivityIntentTest() {
+        Context context = ApplicationProvider.getApplicationContext();
+        Intent intent = SetUpPreferencesActivity.setUpPreferencesIntentFactory(context, TEST_VALUE);
+        assertEquals(TEST_VALUE, intent.getIntExtra(SET_UP_PREFERENCES_ACTIVITY_USER_ID, -1));
     }
 
 }
