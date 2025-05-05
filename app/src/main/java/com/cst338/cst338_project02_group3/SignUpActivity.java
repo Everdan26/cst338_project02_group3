@@ -50,12 +50,14 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Gets the the string for the user input
         String username = binding.signUpUsernameEditTextView.getText().toString();
+        String password = binding.signUpPasswordEditTextView.getText().toString();
 
         //Checks if the input is empty for username
-        if(username.isEmpty()) {
-            Toast.makeText(this,"Please enter a valid username", Toast.LENGTH_SHORT).show();
+        if(username.isEmpty() || password.isEmpty() ) {
+            Toast.makeText(this,"Please enter a valid username or password", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
         //Checks the User table if the username already exist
         LiveData<User> userObserver = repository.getUserByUsername(username);
@@ -64,7 +66,6 @@ public class SignUpActivity extends AppCompatActivity {
             if (user != null) {
                 Toast.makeText(this, "Username is already taken!", Toast.LENGTH_SHORT).show();
             } else {
-                String password = binding.signUpPasswordEditTextView.getText().toString();
                 if (password != null) {
                     user1 = new User(username, password);
                     repository.insertUser(user1);
