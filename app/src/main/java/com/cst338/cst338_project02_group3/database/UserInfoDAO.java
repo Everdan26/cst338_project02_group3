@@ -82,7 +82,7 @@ public interface UserInfoDAO {
     @Query("SELECT * FROM userInfoTable " +
             "WHERE userId != :currentUserId " +
             "AND userId NOT IN (SELECT userId2 from matchesTable WHERE userId1 = :currentUserId) " +
-            "AND age > (SELECT p.age from userInfoTable u INNER JOIN preferencesTable p ON u.userInfoId = p.userInfoId INNER JOIN userTable t on t.id = u.userId AND userId = :currentUserId) " +
+            "AND age >= (SELECT p.age from userInfoTable u INNER JOIN preferencesTable p ON u.userInfoId = p.userInfoId INNER JOIN userTable t on t.id = u.userId AND userId = :currentUserId) " +
             "AND gender = (SELECT p.gender FROM userInfoTable u INNER JOIN preferencesTable p ON u.userInfoId = p.userInfoId INNER JOIN userTable t on t.id = userId and userId = :currentUserId)")
     LiveData<List<UserInfo>> getUnmatchedUsers(int currentUserId);
 
