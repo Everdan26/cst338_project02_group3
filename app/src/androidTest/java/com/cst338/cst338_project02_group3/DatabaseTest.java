@@ -2,14 +2,12 @@ package com.cst338.cst338_project02_group3;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -30,8 +28,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
@@ -56,6 +52,7 @@ public class DatabaseTest {
 
     private int userId;
     private int userInfoId;
+
 
     @Before
     public void setup() {
@@ -143,6 +140,19 @@ public class DatabaseTest {
         assertNotNull(userPreferences);
     }
 
+    // User Preferences Test (update)
+    // Only testing SQL call
+    @Test
+    public void updatePreferenceTest() {
+        userInfoDAO.insert(userInfo);
+        userPreferencesDAO.insert(userPreferences);
+        int changedRows = userPreferencesDAO.saveNewUserPreferenceTest(42, "M", userInfoId);
+        assertEquals(1, changedRows);
+
+        int unchangedRows = userPreferencesDAO.saveNewUserPreferenceTest(42, "M", userInfoId+1);
+        assertEquals(0,unchangedRows);
+    }
+
     //User Preferences Test (delete)
     @Test
     public void preferenceDeleteTest() {
@@ -159,6 +169,18 @@ public class DatabaseTest {
         assertNotNull(userInfo);
         assertEquals("Monte", userInfo.getName());
         assertEquals(21, userInfo.getAge());
+    }
+
+    // Update UserInfo test
+    // Only testing SQL call because updateUserInfo(...) is asynchronous
+    @Test
+    public void updateUserInfo() {
+        userInfoDAO.insert(userInfo);   // See set up for initial info
+        int changedRows = userInfoDAO.updateUserInfoTest("Changed", 42, "F", "Changed", "Changed", userId);
+        assertEquals(1, changedRows);
+
+        int unchangedRows = userInfoDAO.updateUserInfoTest("Changed", 42, "F", "Changed", "Changed", userId+1);
+        assertEquals(0,unchangedRows);
     }
 
     //Delete UserInfo test
@@ -232,7 +254,10 @@ public class DatabaseTest {
 
         //Checking if it got updated the status
         assertTrue(reportDAO.banStatus(report.getUserId()));
-
     }
+
+
+
+
 
 }
